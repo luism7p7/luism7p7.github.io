@@ -434,6 +434,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
       <div class="skills">
         <ul class="sk-list rv">
           <li><b data-i18n="s1b">Páginas y sistemas web</b><span>HTML · CSS · JavaScript · React</span></li>
+          <li><b data-i18n="s6b">Servidores y sistemas (back-end)</b><span>Java · Spring Boot · Maven</span></li>
           <li><b data-i18n="s2b">Apps de celular</b><span>Flutter · Dart</span></li>
           <li><b data-i18n="s3b">Datos e inteligencia artificial</b><span>Python · pandas · scikit-learn · Google Colab</span></li>
           <li><b data-i18n="s4b">Bases de datos</b><span>SQLite · MySQL · Firebase</span></li>
@@ -444,13 +445,13 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
             <h3 data-i18n="l-h">Aprendiendo ahora</h3>
             <div class="learn">
               <div><i class="ic i-aws"></i><b>AWS</b><span data-i18n="l1">Servicios en la nube de Amazon para publicar aplicaciones.</span></div>
-              <div><i class="ic i-spring"></i><b>Java y Spring Boot</b><span data-i18n="l2">Sistemas empresariales, como los de los bancos.</span></div>
+              <div><i class="ic i-powerbi"></i><b>Power BI</b><span data-i18n="x1">Tableros de datos para tomar decisiones.</span></div>
             </div>
           </div>
           <div class="sk-col">
             <h3 data-i18n="x-h">Lo siguiente</h3>
             <div class="learn">
-              <div><i class="ic i-powerbi"></i><b>Power BI</b><span data-i18n="x1">Tableros de datos para tomar decisiones.</span></div>
+              <div><i class="ic i-junit"></i><b>JUnit</b><span data-i18n="x3">Pruebas automáticas que revisan que el código funcione.</span></div>
               <div><i class="ic i-docker"></i><b>Docker</b><span data-i18n="x2">Que una aplicación funcione igual en cualquier computador.</span></div>
             </div>
           </div>
@@ -558,18 +559,18 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         role:"The whole project: game rules, interface, the bank and the server for online play.",
         note:"The online version runs the player-vs-computer mode and the bank. Multiplayer needs the server running."} },
     { id:"glampinghub", logo:"", video:"media/glampinghub.mp4", poster:"media/glampinghub.jpg",
-      tools:[["html5","HTML"],["css3","CSS"],["javascript","JavaScript"]],
-      links:[],
+      tools:[["java","Java"],["spring","Spring Boot"],["mysql","MySQL"],["javascript","JavaScript"],["html5","HTML"],["css3","CSS"]],
+      links:[{href:"https://github.com/luism7p7/PROYECTO_GESTION_DE_RESERVAS",es:"Ver el código",en:"View code",main:true}],
       es:{name:"GlampingHub",desc:"Plataforma para encontrar y reservar cabañas y glampings",meta:["Individual","Plataforma web"],
         sub:"Proyecto personal",
         what:"Una plataforma web para encontrar y reservar glampings, cabañas, fincas y parques en Colombia. Se busca por destino, fecha y acompañantes, y cada lugar muestra su capacidad, ubicación y precio por noche.",
-        wins:["Buscador por destino, fecha y número de personas.","Ficha de cada lugar con foto, capacidad y precio.","Registro e inicio de sesión para reservar."],
-        role:"Todo el proyecto: diseño, páginas, buscador y fichas de cada lugar."},
+        wins:["Buscador por destino, fecha y número de personas.","Ficha de cada lugar con foto, capacidad y precio.","Registro e inicio de sesión para reservar.","Servidor propio en Java con Spring Boot y base de datos MySQL para fincas, reservas, clientes y notificaciones."],
+        role:"Todo el proyecto: la base de datos, el servidor en Java con Spring Boot y las páginas web."},
       en:{name:"GlampingHub",desc:"Platform to find and book cabins and glamping sites",meta:["Solo","Web platform"],
         sub:"Personal project",
         what:"A web platform to find and book glamping sites, cabins, farms and parks in Colombia. You search by destination, date and group size, and each place shows its capacity, location and price per night.",
-        wins:["Search by destination, date and number of people.","A page for each place with a photo, capacity and price.","Sign-up and login to book."],
-        role:"The whole project: design, pages, search and the page for each place."} }
+        wins:["Search by destination, date and number of people.","A page for each place with a photo, capacity and price.","Sign-up and login to book.","Its own Java server built with Spring Boot and a MySQL database for farms, bookings, customers and notifications."],
+        role:"The whole project: the database, the Java server with Spring Boot and the web pages."} }
   ];
   var UI = { es:{what:"Qué es",wins:"Lo que logra",role:"Mi parte",tools:"Herramientas",label:"Proyecto",close:"Cerrar"}, en:{what:"What it is",wins:"What it does",role:"My part",tools:"Tools",label:"Project",close:"Close"} };
   var EN = {
@@ -586,7 +587,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     "c-h":"More complex is not always better","c-x5":"no limit","c-x":"model complexity →","c-y":"average error (cm)","c-pick":"chosen: 0.26 cm","c-mem":"memorizes",
     lg1:"On new flowers",lg2:"On flowers it already knew","c-cap":"A model that is too complex memorizes what it has seen and fails on new data. I chose the point where the error on new data is lowest.",
     "t-l":"Tools","t-h":"What I use <em>to build</em>","t-p":"Grouped by what they are for, so they make sense without a programming background.",
-    s1b:"Websites and web systems",s2b:"Phone apps",s3b:"Data and artificial intelligence",s4b:"Databases",s5b:"Teamwork",s5:"Git · GitHub · Scrum · AI assistants",
+    s1b:"Websites and web systems",s2b:"Phone apps",s3b:"Data and artificial intelligence",s4b:"Databases",s5b:"Teamwork",s6b:"Servers and systems (back end)",x3:"Automated tests that check the code works.",s5:"Git · GitHub · Scrum · AI assistants",
     "l-h":"Learning now",l1:"Amazon's cloud services for publishing applications.",l2:"Enterprise systems, like the ones banks use.","x-h":"Next up",x1:"Data dashboards for decision-making.",x2:"Makes an application run the same on any computer.",
     "ab-l":"About me","ab-q":"Running a small shop taught me that <em>inventory never forgives mistakes</em>.",
     "ab-1":"For a year and a half I served customers, negotiated with suppliers and managed a business's inventory. That experience taught me to understand what the person who will use what I build actually needs.",
