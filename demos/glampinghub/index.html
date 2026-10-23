@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>GlampingHub - Reserva tu Aventura</title>
+
+    <link rel="stylesheet" href="ESTILOS/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="top-bar">
+    <button class="btn-login" onclick="openModal('login')">Iniciar Sesión</button>
+    <button class="btn-register" onclick="openModal('register')">Registrarse</button>
+    <button class="btn-about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">¿Quiénes somos?</button>
+</div>
+
+<div class="header-content">
+    <div class="brand">GlampingHub</div>
+    <div class="nature-phrase">Conecta con la naturaleza, vive experiencias inolvidables.</div>
+
+    <section class="search-section" id="buscar">
+        <h2 class="title">Busca tu próximo destino</h2>
+        <div class="search-box">
+            <input type="text" id="destino" placeholder="¿Dónde quieres ir?" aria-label="Destino" />
+            <input type="date" id="fecha" aria-label="Fecha" />
+            <select id="companeros" aria-label="Con quién">
+                <option value="">¿Con quién?</option>
+                <option value="solo">Solo</option>
+                <option value="pareja">Pareja</option>
+                <option value="familia">Familia</option>
+                <option value="amigos">Amigos</option>
+            </select>
+            <button type="button" onclick="buscar()">Buscar</button>
+        </div>
+    </section>
+</div>
+
+<div id="modal-bg" class="modal-bg" onclick="closeModal()"></div>
+
+<div id="modal-login" class="gh-modal login-modal" style="display:none;">
+    <h2 class="modal-title">Iniciar Sesión</h2>
+    <input type="email" id="login-email" placeholder="Correo electrónico" required>
+    <input type="password" id="login-password" placeholder="Contraseña" required>
+    <button onclick="handleLogin()" class="btn-modal-primary">Entrar</button>
+    <button onclick="closeModal()" class="btn-modal-secondary">Cerrar</button>
+</div>
+
+<div id="modal-register" class="gh-modal register-modal" style="display:none;">
+    <h2 class="modal-title">Registrarse</h2>
+    <input type="text" id="register-name" placeholder="Nombre completo" required>
+    <input type="email" id="register-email" placeholder="Correo electrónico" required>
+    <input type="password" id="register-password" placeholder="Contraseña" required>
+    <button onclick="handleRegister()" class="btn-modal-primary">Registrarse</button>
+    <button onclick="closeModal()" class="btn-modal-secondary">Cerrar</button>
+</div>
+
+<section id="about" class="about-section">
+    <h2 class="section-title">¿Quiénes somos?</h2>
+    <p>
+        Somos una plataforma dedicada a conectar a las personas con la naturaleza, facilitando la reserva de parques, fincas y espacios recreativos para disfrutar en familia o con amigos de manera fácil, rápida y segura.
+    </p>
+</section>
+
+<div class="section-titles">
+    <h2>Encuentra parques, cabañas, fincas y espacios recreativos</h2>
+</div>
+
+<div id="resultado_busqueda" style="display: none; justify-content: center; align-items: center; padding: 40px; min-height: 50vh; flex-direction: column;">
+</div>
+
+<div id="propiedades_glamping" class="glamping-grid">
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section"><h4>Inicio</h4><ul><li><a href="index.html">Volver al inicio</a></li><li><a href="#buscar">Ir a búsqueda</a></li></ul></div>
+        <div class="footer-section"><h4>Sobre Nosotros</h4><ul><li><a href="HTML/sobreNosotros.html">Quiénes somos</a></li><li><a href="HTML/sobreNosotros.html">Misión y Visión</a></li><li><a href="HTML/sobreNosotros.html">Equipo</a></li></ul></div>
+        <div class="footer-section"><h4>Soporte</h4><ul><li><a href="HTML/soporte.html">Contacto</a></li><li><a href="HTML/soporte.html">Preguntas frecuentes</a></li><li><a href="HTML/soporte.html">Ayuda</a></li></ul></div>
+        <div class="footer-section"><h4>Síguenos</h4><div class="social-icons"><a href="#"><img src="IMAGENES/fb_icon-icons.com_65434.png" alt="Facebook" class="social-icon"></a><a href="#"><img src="IMAGENES/instagram_f_icon-icons.com_65485.png" alt="Instagram" class="social-icon"></a><a href="#"><img src="IMAGENES/twitter_x_logo_icon_258955.png" alt="Twitter" class="social-icon"></a></div></div>
+    </div>
+    <p class="footer-copy">&copy; 2025 GlampingHub</p>
+</footer>
+
+<script src="JS/demo-api.js"></script>
+<script src="JS/App.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
