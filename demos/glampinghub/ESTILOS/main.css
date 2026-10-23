@@ -1,0 +1,372 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400;700&display=swap');
+
+/* Reset y Estilos Base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    background: 
+        linear-gradient(rgba(34, 49, 63, 0.65), rgba(86, 171, 47, 0.65)),
+        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Colores Clave */
+:root {
+    --color-primary: #43a047; /* Verde Oscuro Principal */
+    --color-secondary: #c8e6c9; /* Verde Claro */
+    --color-accent: #ffb300; /* Amarillo/Naranja para énfasis */
+    --color-text-light: #f3f6f4;
+    --color-text-dark: #1b5e20;
+    --color-bg-dark: #2c3e50; /* Azul Oscuro para Footer */
+}
+
+/* === BARRA SUPERIOR Y HEADER === */
+
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: background-color 0.3s;
+}
+.top-bar button {
+    margin-left: 15px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.btn-login, .btn-register, .btn-logout, .btn-admin {
+    background: var(--color-primary);
+    color: white;
+}
+.btn-register {
+    background: white;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+.btn-about {
+    background: transparent;
+    color: var(--color-text-light);
+    border: 1px solid var(--color-text-light);
+}
+
+.header-content {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 4em;
+    color: var(--color-text-light);
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    margin-bottom: 10px;
+}
+
+.nature-phrase {
+    font-size: 1.5em;
+    color: var(--color-secondary);
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* === BUSCADOR ESTÉTICO === */
+.search-section {
+    width: 90%;
+    max-width: 900px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.search-section .title {
+    color: var(--color-text-dark);
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.search-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.search-box input,
+.search-box select,
+.search-box button {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    transition: all 0.2s;
+}
+
+.search-box button {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+.search-box button:hover {
+    background: #388e3c;
+}
+
+/* === MODALES (Login/Register/Admin) === */
+.modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+.gh-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    z-index: 1001;
+    min-width: 350px;
+    text-align: center;
+}
+.modal-title {
+    color: var(--color-primary);
+    margin-bottom: 25px;
+}
+.gh-modal input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.btn-modal-primary {
+    width: 100%;
+    background: var(--color-primary);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.btn-modal-secondary {
+    width: 100%;
+    background: #eee;
+    color: #333;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* === SECCIONES DE CONTENIDO === */
+
+.about-section {
+    margin: 80px auto;
+    max-width: 800px;
+    padding: 40px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    color: var(--color-text-light);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    color: var(--color-secondary);
+    margin-bottom: 20px;
+}
+
+.section-titles {
+    text-align: center;
+    margin: 60px 0 30px 0;
+    padding: 0 20px;
+}
+.section-titles h2 {
+    font-size: 2.5em;
+    color: var(--color-text-light);
+    margin-bottom: 8px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.section-titles h3 {
+    font-size: 1.2em;
+    color: var(--color-secondary);
+    font-weight: 300;
+}
+
+/* === LISTADO DE PROPIEDADES (GRID) === */
+.glamping-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 40px 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.glamping-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+.glamping-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.glamping-card img {
+    width: 100%;
+    height: 240px; 
+    object-fit: cover;
+}
+
+/* --- Modal Detalle de Propiedad (gh-modal) --- */
+.gh-modal-content {
+    background: white;
+    width: 550px;
+    max-width: 95%;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.gh-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #555;
+}
+
+.gh-modal-content h2 {
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+.gh-modal-content p {
+    margin: 8px 0;
+    font-size: 1.1em;
+}
+
+.btn-arrendar {
+    padding: 12px 25px;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 15px;
+}
+.btn-arrendar:hover {
+    background: #388e3c;
+}
+
+/* Estilos para carrusel en modales */
+.gh-modal .carousel-item img {
+  height: 300px; 
+}
+
+
+/* === FOOTER === */
+.footer {
+    background: var(--color-bg-dark);
+    color: #ecf0f1;
+    padding: 40px 20px 20px;
+    margin-top: 50px;
+    border-top: 5px solid var(--color-primary);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: auto;
+    gap: 30px;
+}
+
+.footer-section h4 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: var(--color-secondary);
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.social-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.footer-copy {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #95a5a6;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 15px;
+}
+
+@media (max-width: 768px) {
+    .glamping-grid { padding: 0 20px 40px 20px; }
+    .top-bar { padding: 15px 20px; }
+    .top-bar button { margin-left: 8px; padding: 8px 15px; }
+    .search-box { grid-template-columns: 1fr; }
+    .footer-container { flex-direction: column; text-align: center; }
+    .footer-section h4 { border-bottom: none; }
+}
