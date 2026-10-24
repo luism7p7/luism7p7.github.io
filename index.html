@@ -560,17 +560,19 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         note:"The online version runs the player-vs-computer mode and the bank. Multiplayer needs the server running."} },
     { id:"glampinghub", logo:"", video:"media/glampinghub.mp4", poster:"media/glampinghub.jpg",
       tools:[["java","Java"],["spring","Spring Boot"],["mysql","MySQL"],["javascript","JavaScript"],["html5","HTML"],["css3","CSS"]],
-      links:[{href:"https://luism7p7.github.io/demos/glampinghub/index.html",es:"Ver la página",en:"Open the site",main:true},{href:"https://github.com/luism7p7/glampinghub",es:"Ver el código",en:"View code"}],
+      links:[{href:"https://glampinghub-mzyu.onrender.com",es:"Probar la app",en:"Try the app",main:true},{href:"https://github.com/luism7p7/glampinghub",es:"Ver el código",en:"View code"}],
       es:{name:"GlampingHub",desc:"Plataforma para encontrar y reservar cabañas y glampings",meta:["Individual","Plataforma web"],
         sub:"Proyecto personal",
         what:"Una plataforma web para encontrar y reservar glampings, cabañas, fincas y parques en Colombia. Se busca por destino, fecha y acompañantes, y cada lugar muestra su capacidad, ubicación y precio por noche.",
-        wins:["Buscador por destino, fecha y número de personas.","Ficha de cada lugar con foto, capacidad y precio.","Registro e inicio de sesión para reservar.","Servidor propio en Java con Spring Boot y base de datos MySQL para fincas, reservas, clientes y notificaciones."],
-        role:"Todo el proyecto: la base de datos, el servidor en Java con Spring Boot y las páginas web."},
+        wins:["Reservas reales: eliges fechas y huéspedes, calcula el total y no deja reservar fechas ocupadas.","Cuentas con contraseña cifrada y sección \"Mis reservas\" para cancelar.","Panel de administración para confirmar reservas y publicar lugares nuevos.","Funciona en internet: servidor Java con Spring Boot en Render y base de datos MySQL en la nube, con pruebas automáticas en GitHub."],
+        role:"Todo el proyecto: la base de datos, el servidor en Java con Spring Boot, las páginas web y la publicación en internet.",
+        note:"Puedes probarla con la cuenta de demostración (botón en la página). Está en un plan gratuito: la primera visita puede tardar hasta un minuto mientras el servidor despierta."},
       en:{name:"GlampingHub",desc:"Platform to find and book cabins and glamping sites",meta:["Solo","Web platform"],
         sub:"Personal project",
         what:"A web platform to find and book glamping sites, cabins, farms and parks in Colombia. You search by destination, date and group size, and each place shows its capacity, location and price per night.",
-        wins:["Search by destination, date and number of people.","A page for each place with a photo, capacity and price.","Sign-up and login to book.","Its own Java server built with Spring Boot and a MySQL database for farms, bookings, customers and notifications."],
-        role:"The whole project: the database, the Java server with Spring Boot and the web pages."} }
+        wins:["Real bookings: pick dates and guests, it works out the total and blocks dates that are already taken.","Accounts with encrypted passwords and a \"My bookings\" section to cancel.","An admin panel to confirm bookings and publish new places.","Live on the internet: a Java Spring Boot server on Render and a cloud MySQL database, with automated tests on GitHub."],
+        role:"The whole project: the database, the Java server with Spring Boot, the web pages and putting it online.",
+        note:"You can try it with the demo account (button on the page). It runs on a free plan, so the first visit can take up to a minute while the server wakes up."} }
   ];
   var UI = { es:{what:"Qué es",wins:"Lo que logra",role:"Mi parte",tools:"Herramientas",label:"Proyecto",close:"Cerrar"}, en:{what:"What it is",wins:"What it does",role:"My part",tools:"Tools",label:"Project",close:"Close"} };
   var EN = {
