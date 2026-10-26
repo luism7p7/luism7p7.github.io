@@ -735,6 +735,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     try{ navigator.clipboard.writeText(email.textContent).then(done,fb); }catch(e){ fb(); }
   });
 
+  (function(){ /* portada: ámbito propio para no chocar con las variables de los proyectos */
   /* Andes en capas: cordilleras con profundidad que siguen al mouse, una luz que las ilumina
      y luciérnagas que se acercan al cursor y se dispersan con un clic o un toque */
   var cv=document.getElementById("topo"), ctx=cv.getContext("2d");
@@ -823,6 +824,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     if("IntersectionObserver" in window) new IntersectionObserver(function(es){ visible=es[0].isIntersecting; }).observe(cv);
     requestAnimationFrame(loop);
   }
+  })();
 })();
 </script>
 
