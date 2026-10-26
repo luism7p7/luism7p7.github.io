@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Luis Miguel Muñoz</title>
-<meta name="description" content="Portafolio de Luis Miguel Muñoz Rendón, estudiante de Ingeniería de Software en Medellín. Desarrollo web, apps móviles y analítica de datos. Disponible para práctica profesional desde enero de 2027.">
+<meta name="description" content="Portafolio de Luis Miguel Muñoz Rendón, estudiante de Ingeniería de Software en Medellín. Desarrollo web, apps móviles y analítica de datos. Disponible para práctica profesional desde noviembre de 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
@@ -345,7 +345,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     <div class="wrap">
       <div class="hero-top">
         <span class="label" data-i18n="h-l">Ingeniería de Software · Medellín</span>
-        <span class="avail"><i aria-hidden="true"></i><span data-i18n="h-a">Disponible para práctica desde enero de 2027</span></span>
+        <span class="avail"><i aria-hidden="true"></i><span data-i18n="h-a">Disponible para práctica desde noviembre de 2026</span></span>
       </div>
       <h1 class="name"><span class="ln"><span>Luis Miguel</span></span><span class="ln"><span><em>Muñoz Rendón</em></span></span></h1>
       <div class="hero-grid">
@@ -471,7 +471,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
           <p class="txt" data-i18n="ab-2"><b>Cómo trabajo:</b> en equipo, con orden y buenas prácticas, y me adapto rápido a herramientas nuevas. Fuera del trabajo juego ajedrez, leo y comparto con mi familia.</p>
         </div>
         <ol class="tl rv">
-          <li><time>2027</time><div><b data-i18n="tl1">Práctica profesional</b><span data-i18n="tl1s">Desde enero, en desarrollo de software o datos</span></div></li>
+          <li><time>2026</time><div><b data-i18n="tl1">Práctica profesional</b><span data-i18n="tl1s">Desde noviembre, en desarrollo de software o datos</span></div></li>
           <li><time>2026</time><div><b data-i18n="tl2">7.º semestre · Numi</b><span data-i18n="tl2s">Analítica de Datos, curso de Java (Udemy) y app educativa con IA</span></div></li>
           <li><time>2023</time><div><b data-i18n="tl3">Ingeniería de Software</b><span>Universidad Cooperativa de Colombia, Medellín</span></div></li>
           <li><time>2022 – 2023</time><div><b data-i18n="tl4">Administrador y atención al cliente</b><span>Kiosco Casa Rendón</span></div></li>
@@ -578,7 +578,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   var UI = { es:{what:"Qué es",wins:"Lo que logra",role:"Mi parte",tools:"Herramientas",label:"Proyecto",close:"Cerrar"}, en:{what:"What it is",wins:"What it does",role:"My part",tools:"Tools",label:"Project",close:"Close"} };
   var EN = {
     n1:"Projects",n2:"Data",n3:"Tools",n4:"About",n5:"Contact",
-    "h-l":"Software Engineering · Medellín","h-a":"Available for an internship from January 2027",
+    "h-l":"Software Engineering · Medellín","h-a":"Available for an internship from November 2026",
     "h-p":"I build <b>websites</b>, <b>mobile apps</b> and <b>data analyses</b>. I study Software Engineering at Universidad Cooperativa de Colombia, and before that I ran a business serving customers.",
     "h-b1":"See projects","h-b2":"View resume",
     f1:"projects with a video demo",f2:"website published and in use",f3:"years of customer-facing experience",f4b:"7th",f4:"semester of Software Engineering",
@@ -595,7 +595,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     "ab-l":"About me","ab-q":"Running a small shop taught me that <em>inventory never forgives mistakes</em>.",
     "ab-1":"For a year and a half I served customers, negotiated with suppliers and managed a business's inventory. That experience taught me to understand what the person who will use what I build actually needs.",
     "ab-2":"<b>How I work:</b> as part of a team, with order and good practices, and I pick up new tools quickly. Outside of work I play chess, read and spend time with my family.",
-    tl1:"Professional internship",tl1s:"From January, in software development or data",tl2:"7th semester · Numi",tl2s:"Data Analytics, Java course (Udemy) and an educational app with AI",tl3:"Software Engineering",tl4:"Manager and customer service",tl5:"High school diploma",
+    tl1:"Professional internship",tl1s:"From November, in software development or data",tl2:"7th semester · Numi",tl2s:"Data Analytics, Java course (Udemy) and an educational app with AI",tl3:"Software Engineering",tl4:"Manager and customer service",tl5:"High school diploma",
     "nb-l":"Loading…",cvtab:"Resume",pdf:"Download PDF","ct-l":"Contact","ct-h":"Have an internship? <em>Let’s talk.</em>",copy:"Copy email",ft:"Updated October 2026"
   };
   var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-i18n]")), ES = {};
@@ -735,61 +735,93 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     try{ navigator.clipboard.writeText(email.textContent).then(done,fb); }catch(e){ fb(); }
   });
 
-  /* topographic contour lines: the Andes mountains, slowly shifting and bending around the cursor */
+  /* Andes en capas: cordilleras con profundidad que siguen al mouse, una luz que las ilumina
+     y luciérnagas que se acercan al cursor y se dispersan con un clic o un toque */
   var cv=document.getElementById("topo"), ctx=cv.getContext("2d");
-  var perm=new Uint8Array(512);
-  (function(){ var p=[],i,s=7; for(i=0;i<256;i++) p[i]=i; for(i=255;i>0;i--){ s=(s*16807)%2147483647; var j=s%(i+1), t=p[i]; p[i]=p[j]; p[j]=t; } for(i=0;i<512;i++) perm[i]=p[i&255]; })();
-  function fade(t){ return t*t*t*(t*(t*6-15)+10); }
-  function lerp(a,b,t){ return a+t*(b-a); }
-  function grad(hh,x,y,z){ var u=hh<8?x:y, v=hh<4?y:(hh===12||hh===14?x:z); return ((hh&1)?-u:u)+((hh&2)?-v:v); }
-  function noise(x,y,z){
-    var X=Math.floor(x)&255,Y=Math.floor(y)&255,Z=Math.floor(z)&255; x-=Math.floor(x); y-=Math.floor(y); z-=Math.floor(z);
-    var u=fade(x),v=fade(y),w=fade(z),A=perm[X]+Y,AA=perm[A]+Z,AB=perm[A+1]+Z,B=perm[X+1]+Y,BA=perm[B]+Z,BB=perm[B+1]+Z;
-    return lerp(lerp(lerp(grad(perm[AA]&15,x,y,z),grad(perm[BA]&15,x-1,y,z),u),lerp(grad(perm[AB]&15,x,y-1,z),grad(perm[BB]&15,x-1,y-1,z),u),v),
-                lerp(lerp(grad(perm[AA+1]&15,x,y,z-1),grad(perm[BA+1]&15,x-1,y,z-1),u),lerp(grad(perm[AB+1]&15,x,y-1,z-1),grad(perm[BB+1]&15,x-1,y-1,z-1),u),v),w);
+  var dpr=Math.min(window.devicePixelRatio||1,1.75), W=0, H=0, visible=true, t0=performance.now();
+  var mx=.62, my=.38, tx=.62, ty=.38, active=false, lastMove=0;
+  var seed=11; function rnd(){ seed=(seed*16807)%2147483647; return (seed-1)/2147483646; }
+  // ruido 1D suave para las crestas
+  var P=[]; for(var i=0;i<512;i++) P.push(rnd());
+  function n1(x){ var i=Math.floor(x), f=x-i, u=f*f*(3-2*f); return P[i&511]*(1-u)+P[(i+1)&511]*u; }
+  function ridge(x, k){ var s=0, a=1, fr=1, tot=0; for(var o=0;o<5;o++){ s+=a*n1(x*fr+k*37.1); tot+=a; a*=.5; fr*=2.1; } return s/tot; }
+  var LAYERS=[ // profundidad (0 lejos, 1 cerca), altura base, amplitud, escala
+    {d:.10,b:.50,a:.22,s:2.2},{d:.28,b:.58,a:.24,s:2.8},{d:.48,b:.66,a:.22,s:3.4},{d:.70,b:.75,a:.18,s:4.2},{d:.92,b:.86,a:.14,s:5.4}];
+  var flies=[], ripples=[];
+  function size(){
+    var r=cv.getBoundingClientRect(); W=r.width; H=r.height;
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.round(Math.min(64, W*H/15000)); flies=[];
+    for(var i=0;i<n;i++) flies.push({x:rnd()*W, y:H*(.5+rnd()*.48), vx:0, vy:0, ph:rnd()*6.28, r:.6+rnd()*.9, sp:.4+rnd()*.8});
   }
-  var SEG={1:[3,2],2:[2,1],3:[3,1],4:[0,1],5:[3,0,2,1],6:[0,2],7:[3,0],8:[3,0],9:[0,2],10:[0,1,3,2],11:[0,1],12:[3,1],13:[2,1],14:[3,2]};
-  var W=0,H=0,cell=16,cols=0,rows=0,field=null,dpr=Math.min(window.devicePixelRatio||1,1.5),tz=0,cmx=-9999,cmy=-9999,tmx=-9999,tmy=-9999,visible=true,last=0;
-  var ex=[0,0,0,0], ey=[0,0,0,0];
-  function size(){ var r=cv.getBoundingClientRect(); W=r.width; H=r.height; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); cols=Math.ceil(W/cell)+1; rows=Math.ceil(H/cell)+1; field=new Float32Array(cols*rows); }
-  function compute(){
-    var sc=0.0032;
-    for(var j=0;j<rows;j++) for(var i=0;i<cols;i++){
-      var x=i*cell,y=j*cell,dx=x-cmx,dy=y-cmy;
-      field[j*cols+i]=noise(x*sc,y*sc,tz)*0.9+noise(x*sc*2.3,y*sc*2.3,tz*1.3)*0.3-(y/H)*0.35+0.5*Math.exp(-(dx*dx+dy*dy)/26000);
+  function crest(L, x, ox){ return H*(L.b - L.a*ridge((x+ox)/W*L.s, L.d*10)) ; }
+  function draw(now){
+    var t=(now-t0)/1000;
+    if(!active || now-lastMove>4000){ // sin mouse: la luz pasea sola sobre las montañas
+      tx=.55+.28*Math.sin(t*.13); ty=.30+.10*Math.sin(t*.21+1.3);
     }
-  }
-  function draw(){
+    mx+=(tx-mx)*.06; my+=(ty-my)*.06;
+    var lx=mx*W, ly=my*H;
     ctx.clearRect(0,0,W,H);
-    for(var k=0;k<14;k++){
-      var L=-0.55+k*0.1;
-      ctx.beginPath(); ctx.strokeStyle=(k%5===0)?"rgba(168,213,191,.22)":"rgba(168,213,191,.08)"; ctx.lineWidth=(k%5===0)?1.2:1;
-      for(var j=0;j<rows-1;j++) for(var i=0;i<cols-1;i++){
-        var a=field[j*cols+i],b=field[j*cols+i+1],c=field[(j+1)*cols+i+1],d=field[(j+1)*cols+i];
-        var idx=(a>L?8:0)|(b>L?4:0)|(c>L?2:0)|(d>L?1:0); if(idx===0||idx===15) continue;
-        var x=i*cell,y=j*cell;
-        ex[0]=x+cell*(L-a)/(b-a); ey[0]=y;
-        ex[1]=x+cell; ey[1]=y+cell*(L-b)/(c-b);
-        ex[2]=x+cell*(L-d)/(c-d); ey[2]=y+cell;
-        ex[3]=x; ey[3]=y+cell*(L-a)/(d-a);
-        var s=SEG[idx];
-        for(var q=0;q<s.length;q+=2){ ctx.moveTo(ex[s[q]],ey[s[q]]); ctx.lineTo(ex[s[q+1]],ey[s[q+1]]); }
-      }
-      ctx.stroke();
+    // luz (amanecer que sigue al cursor) detrás de las cordilleras
+    var g=ctx.createRadialGradient(lx,ly,0,lx,ly,Math.max(W,H)*.55);
+    g.addColorStop(0,"rgba(227,211,180,.22)"); g.addColorStop(.25,"rgba(168,213,191,.08)"); g.addColorStop(1,"rgba(12,17,16,0)");
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    var sr=Math.min(W,H)*.05, sun=ctx.createRadialGradient(lx,ly,0,lx,ly,sr); sun.addColorStop(0,"rgba(246,232,200,.55)"); sun.addColorStop(.55,"rgba(240,220,180,.16)"); sun.addColorStop(1,"rgba(240,220,180,0)"); ctx.fillStyle=sun; ctx.beginPath(); ctx.arc(lx,ly,sr,0,6.283); ctx.fill();
+    // cordilleras: cada capa se mueve según su profundidad (paralaje)
+    var px=(mx-.5), py=(my-.4);
+    for(var k=0;k<LAYERS.length;k++){
+      var L=LAYERS[k], ox=-px*W*.18*L.d + t*6*(L.d+.2), oy=-py*H*.10*L.d;
+      ctx.beginPath(); ctx.moveTo(0,H);
+      var step=Math.max(4, W/260), pts=[];
+      for(var x=0;x<=W+step;x+=step){ var y=crest(L,x,ox)+oy; pts.push(x,y); ctx.lineTo(x,y); }
+      ctx.lineTo(W,H); ctx.closePath();
+      var depth=L.d, base=Math.round(12+depth*6);
+      var fill=ctx.createLinearGradient(0,H*(L.b-L.a),0,H);
+      var hz=1-depth; fill.addColorStop(0,"rgba("+(14+hz*26|0)+","+(22+hz*40|0)+","+(20+hz*34|0)+","+(.7+.3*depth)+")");
+      fill.addColorStop(1,"rgba(12,17,16,"+(.75+.25*depth)+")");
+      ctx.fillStyle=fill; ctx.fill();
+      // borde de la cresta: brilla más cerca de la luz
+      var sg=ctx.createRadialGradient(lx,ly,0,lx,ly,W*(.22+.15*depth));
+      sg.addColorStop(0,"rgba(240,224,190,"+(.85-.35*depth)+")"); sg.addColorStop(.6,"rgba(168,213,191,"+(.28-.1*depth)+")"); sg.addColorStop(1,"rgba(168,213,191,"+(.10+.04*depth)+")");
+      ctx.beginPath(); for(var q=0;q<pts.length;q+=2){ if(q===0) ctx.moveTo(pts[q],pts[q+1]); else ctx.lineTo(pts[q],pts[q+1]); }
+      ctx.strokeStyle=sg; ctx.lineWidth=1+depth*1.2; ctx.stroke();
+      // niebla entre capas
+      if(k<LAYERS.length-1){ var fg=ctx.createLinearGradient(0,H*(L.b+.02),0,H*(L.b+.14)); fg.addColorStop(0,"rgba(168,213,191,.035)"); fg.addColorStop(1,"rgba(168,213,191,0)"); ctx.fillStyle=fg; ctx.fillRect(0,H*(L.b+.02),W,H*.12); }
     }
+    // ondas de clic
+    for(var r=ripples.length-1;r>=0;r--){ var R=ripples[r], a=(t-R.t)/1.6; if(a>1){ ripples.splice(r,1); continue; }
+      ctx.beginPath(); ctx.arc(R.x,R.y,10+a*Math.min(W,H)*.35,0,6.283); ctx.strokeStyle="rgba(227,211,180,"+(.5*(1-a))+")"; ctx.lineWidth=1.4; ctx.stroke(); }
+    // luciérnagas: se acercan a la luz y huyen de las ondas
+    ctx.globalCompositeOperation="lighter";
+    for(var f=0;f<flies.length;f++){
+      var F=flies[f], dx=lx-F.x, dy=ly-F.y, dd=Math.sqrt(dx*dx+dy*dy)+1;
+      var pull=active?Math.min(.06, 22/dd)*.6:.004;
+      F.vx+=dx/dd*pull*F.sp + Math.cos(t*F.sp+F.ph)*.02; F.vy+=dy/dd*pull*F.sp + Math.sin(t*F.sp*1.3+F.ph)*.02;
+      for(var r2=0;r2<ripples.length;r2++){ var R2=ripples[r2], ex=F.x-R2.x, ey=F.y-R2.y, e=Math.sqrt(ex*ex+ey*ey)+1; if(t-R2.t<.25){ F.vx+=ex/e*3.2; F.vy+=ey/e*3.2; } }
+      if(dd<40){ F.vx-=dx/dd*.12; F.vy-=dy/dd*.12; }
+      F.vx*=.94; F.vy*=.94; F.x+=F.vx; F.y+=F.vy;
+      if(F.x<-20) F.x=W+20; if(F.x>W+20) F.x=-20; if(F.y<H*.2) F.y=H; if(F.y>H) F.y=H*.5;
+      var tw=.45+.55*Math.max(0,Math.sin(t*2.2*F.sp+F.ph)), rr=F.r*(1+tw);
+      var fg2=ctx.createRadialGradient(F.x,F.y,0,F.x,F.y,rr*3.2);
+      fg2.addColorStop(0,"rgba(246,222,160,"+(.55*tw)+")"); fg2.addColorStop(1,"rgba(246,222,160,0)");
+      ctx.fillStyle=fg2; ctx.beginPath(); ctx.arc(F.x,F.y,rr*3.2,0,6.283); ctx.fill();
+      ctx.fillStyle="rgba(255,240,200,"+(.9*tw)+")"; ctx.beginPath(); ctx.arc(F.x,F.y,rr*.7,0,6.283); ctx.fill();
+    }
+    ctx.globalCompositeOperation="source-over";
   }
-  function frame(ts){
-    if(visible && ts-last>45){ last=ts; tz+=0.0035; if(tmx>-999){ cmx+=(tmx-cmx)*.08; cmy+=(tmy-cmy)*.08; } else { cmx=-9999; cmy=-9999; } compute(); draw(); }
-    requestAnimationFrame(frame);
-  }
-  size(); compute(); draw();
-  var rT; window.addEventListener("resize",function(){ clearTimeout(rT); rT=setTimeout(function(){ size(); compute(); draw(); },120); });
+  function loop(now){ if(visible) draw(now); requestAnimationFrame(loop); }
+  size();
+  var rT; window.addEventListener("resize",function(){ clearTimeout(rT); rT=setTimeout(function(){ size(); draw(performance.now()); },120); });
   var hero=document.querySelector(".hero");
-  hero.addEventListener("pointermove",function(e){ var r=cv.getBoundingClientRect(); tmx=e.clientX-r.left; tmy=e.clientY-r.top; if(cmx<-999){ cmx=tmx; cmy=tmy; } });
-  hero.addEventListener("pointerleave",function(){ tmx=-9999; tmy=-9999; });
-  if(!reduce){
+  function mv(e){ var r=cv.getBoundingClientRect(); tx=(e.clientX-r.left)/r.width; ty=(e.clientY-r.top)/r.height; active=true; lastMove=performance.now(); }
+  hero.addEventListener("pointermove",mv);
+  hero.addEventListener("pointerdown",function(e){ mv(e); var r=cv.getBoundingClientRect(); ripples.push({x:e.clientX-r.left,y:e.clientY-r.top,t:(performance.now()-t0)/1000}); });
+  hero.addEventListener("pointerleave",function(){ active=false; });
+  if(reduce){ draw(performance.now()); }
+  else {
     if("IntersectionObserver" in window) new IntersectionObserver(function(es){ visible=es[0].isIntersecting; }).observe(cv);
-    requestAnimationFrame(frame);
+    requestAnimationFrame(loop);
   }
 })();
 </script>
