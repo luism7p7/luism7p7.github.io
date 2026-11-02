@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
 <meta property="og:title" content="Luis Miguel Muñoz · Ingeniería de Software">
-<meta property="og:description" content="Desarrollo web, apps móviles y analítica de datos. Disponible para práctica profesional 2027-1.">
+<meta property="og:description" content="Desarrollo web, apps móviles y analítica de datos. Disponible para práctica profesional desde noviembre de 2026.">
 <meta property="og:image" content="https://luism7p7.github.io/media/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -163,7 +163,7 @@ section.block{padding-block:clamp(80px,11vw,140px)}
 .row-name img{width:.78em;height:.78em;border-radius:.2em;object-fit:cover;flex:none}
 .row-name img.round{border-radius:50%}
 .row-desc{color:var(--muted);font-size:var(--t-sm)}
-.row-meta{display:flex;align-items:center;gap:18px;font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.row-meta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
 .live{color:var(--accent)}
 .live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:1px}
 .row-go{width:46px;height:46px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;transition:background .3s,border-color .3s,transform .5s var(--ease);flex:none}
@@ -206,6 +206,30 @@ dialog.sheet::backdrop{background:rgba(4,7,6,.62);backdrop-filter:blur(3px);-web
 .tags{display:flex;flex-wrap:wrap;gap:8px}
 .tag{font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;font-weight:500;padding:6px 11px;border-radius:999px;border:1px solid var(--line2);color:var(--muted)}
 .tag.live{border-color:rgba(168,213,191,.45)}
+.st{--c:168,213,191;display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 10px;border-radius:999px;border:1px solid rgba(var(--c),.5);background:rgba(var(--c),.08);color:rgb(var(--c));font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;font-weight:600;white-space:nowrap;position:relative;overflow:hidden;isolation:isolate}
+.st i{position:relative;width:8px;height:8px;flex:none;display:grid;place-items:center}
+.st-vivo i{border-radius:50%;background:rgb(var(--c))}
+.st-vivo i::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgb(var(--c));animation:stRing 2.2s ease-out infinite}
+@keyframes stRing{from{transform:scale(.6);opacity:.9}to{transform:scale(2.8);opacity:0}}
+.st-fin{--c:226,193,120}
+.st-fin i{width:10px;height:10px}.st-fin i::before{content:"";width:4px;height:8px;border:solid rgb(var(--c));border-width:0 2px 2px 0;transform:translateY(-1px) rotate(45deg)}
+.st-fin::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 35%,rgba(var(--c),.28) 50%,transparent 65%);transform:translateX(-100%);animation:stSheen 3.6s ease-in-out infinite}
+@keyframes stSheen{0%,50%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.st-obra{--c:232,164,106}
+.st-obra::after{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(-55deg,rgba(var(--c),.16) 0 5px,transparent 5px 11px);background-size:200% 100%;animation:stStripe 1.4s linear infinite}
+@keyframes stStripe{to{background-position:-26.9px 0}}
+.st-obra i{width:10px;height:10px;border-radius:50%;border:2px dotted rgb(var(--c));animation:stSpin 2.4s linear infinite}
+@keyframes stSpin{to{transform:rotate(360deg)}}
+.st-doc{--c:127,192,204}
+.st-doc i{width:16px;display:flex;gap:3px;justify-content:center}
+.st-doc i b{width:3px;height:3px;border-radius:50%;background:rgb(var(--c));animation:stType 1.2s ease-in-out infinite}
+.st-doc i b:nth-child(2){animation-delay:.2s}.st-doc i b:nth-child(3){animation-delay:.4s}
+@keyframes stType{0%,100%{opacity:.25;transform:none}40%{opacity:1;transform:translateY(-2px)}}
+.row-meta .st{letter-spacing:.08em}
+.sheet-media img{display:block;width:100%;height:auto}
+#peek img{width:100%;height:100%;object-fit:cover;display:block}
+#peek [hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.st *,.st::after,.st i::after{animation:none!important}}
 .kv{display:grid;gap:22px}
 .kv h4{margin:0 0 8px;font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:500}
 .kv p{margin:0;font-weight:300;line-height:1.65}
@@ -356,7 +380,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         </div>
       </div>
       <div class="facts">
-        <div class="fact"><b data-count="4">4</b><span data-i18n="f1">proyectos con demo en video</span></div>
+        <div class="fact"><b data-count="6">6</b><span data-i18n="f1">proyectos, 2 de ellos en línea hoy</span></div>
         <div class="fact"><b>1</b><span data-i18n="f2">sitio web publicado y en uso</span></div>
         <div class="fact"><b>1,5</b><span data-i18n="f3">años de experiencia con clientes</span></div>
         <div class="fact"><b data-i18n="f4b">7.º</b><span data-i18n="f4">semestre de Ingeniería de Software</span></div>
@@ -368,7 +392,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     <div class="wrap">
       <div class="sec-head rv">
         <div><span class="label" data-i18n="p-l">Trabajo seleccionado</span><h2 class="title" data-i18n="p-h">Proyectos</h2></div>
-        <p data-i18n="p-p">Cada proyecto tiene un video real. Pasa el cursor para verlo y haz clic para conocer qué es, qué hice yo y cómo probarlo.</p>
+        <p data-i18n="p-p">Cada proyecto muestra su estado actual. Pasa el cursor para ver un avance y haz clic para conocer qué es, qué hice yo y cómo probarlo.</p>
       </div>
       <ul class="index" id="index"></ul>
     </div>
@@ -495,7 +519,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   </section>
 </main>
 
-<footer><div class="wrap"><span>© 2026 Luis Miguel Muñoz Rendón · Medellín, Colombia</span><span data-i18n="ft">Actualizado en octubre de 2026</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Luis Miguel Muñoz Rendón · Medellín, Colombia</span><span data-i18n="ft">Actualizado en noviembre de 2026</span></div></footer>
 
 <dialog class="nbview" id="nbview" aria-labelledby="nb-title">
   <div class="nb-bar"><span id="nb-title"></span><div class="nb-actions"><a class="btn solid" id="nb-pdf" href="#" download hidden><span data-i18n="pdf">Descargar PDF</span></a><button type="button" class="sheet-close" id="nb-close" aria-label="Cerrar"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg></button></div></div>
@@ -504,7 +528,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
 
 <button type="button" class="cv-tab" data-doc="cv/cv.html" data-pdf="cv/Luis_Miguel_Munoz_Rendon_HV.pdf" data-doc-title="Hoja de vida · Luis Miguel Muñoz Rendón"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1h5l3 3v9H3z M8 1v3h3 M5 7h4 M5 9.5h4"/></svg><span data-i18n="cvtab">Hoja de vida</span></button>
 
-<div id="peek" aria-hidden="true"><video muted loop playsinline preload="none"></video></div>
+<div id="peek" aria-hidden="true"><video muted loop playsinline preload="none"></video><img alt="" hidden></div>
 
 <dialog class="sheet" id="sheet" aria-labelledby="sh-title">
   <div class="sheet-bar"><span class="label" id="sh-label">Proyecto</span><button type="button" class="sheet-close" id="sh-close" aria-label="Cerrar"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg></button></div>
@@ -518,33 +542,35 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   var lang = "es";
 
   var P = [
-    { id:"casarendon", logo:"media/casarendon-logo.png", round:true, video:"media/casarendon.mp4", poster:"media/casarendon.jpg",
+    { id:"casarendon", status:"vivo", logo:"media/casarendon-logo.png", round:true, video:"media/casarendon.mp4", poster:"media/casarendon.jpg",
       tools:[["html5","HTML"],["css3","CSS"],["javascript","JavaScript"],["react","React"]],
       links:[{href:"https://casarendon.com",es:"Visitar casarendon.com",en:"Visit casarendon.com",main:true},{href:"https://github.com/AlexanderM-Code/Entre-sorbos---Casa-Rendon",es:"Ver el código",en:"View code"}],
-      es:{name:"Casa Rendón",desc:"Sitio web de una marca de café de altura y vino artesanal",meta:["Equipo","En línea"],live:1,
+      es:{name:"Casa Rendón",desc:"Sitio web de una marca de café de altura y vino artesanal",meta:["Equipo","Sitio web"],
         sub:"Entre Sorbos · Buenos Aires, Andes (Antioquia)",
         what:"La página web de Casa Rendón, una marca familiar de café y vino artesanal. Le da presencia en internet al negocio: cuenta su historia, muestra sus productos y permite que los clientes pidan una visita a la finca.",
         wins:["Publicada y funcionando en casarendon.com.","Catálogo de café y vino, galería de fotos reales y preguntas frecuentes.","Las solicitudes de visita llegan directo al WhatsApp del negocio.","Se adapta a celular, tablet y computador."],
         role:"Desarrollé el sitio junto al equipo."},
-      en:{name:"Casa Rendón",desc:"Website for a high-altitude coffee and artisan wine brand",meta:["Team","Live"],live:1,
+      en:{name:"Casa Rendón",desc:"Website for a high-altitude coffee and artisan wine brand",meta:["Team","Website"],
         sub:"Entre Sorbos · Buenos Aires, Andes (Antioquia)",
         what:"The website of Casa Rendón, a family brand of coffee and artisan wine. It gives the business an online presence: it tells its story, shows its products and lets customers request a visit to the farm.",
         wins:["Published and running at casarendon.com.","Coffee and wine catalog, a gallery of real photos and an FAQ.","Visit requests go straight to the business WhatsApp.","Works on phones, tablets and computers."],
         role:"I built the site together with the team."} },
-    { id:"numi", logo:"media/numi-icon.png", video:"media/numi.mp4", poster:"media/numi.jpg", tall:true,
-      tools:[["flutter","Flutter"],["dart","Dart"],["sqlite","SQLite"],["firebase","Firebase"],["python","Python"],["ai","IA"]],
-      links:[{href:"https://github.com/geminitodo5-sketch/app-educativa-medellin",es:"Ver el código",en:"View code"}],
-      es:{name:"Numi",desc:"App educativa para niños que funciona sin internet",meta:["Equipo","Android"],
+    { id:"numi", status:"obra", logo:"media/numi-icon.png", video:"media/numi.mp4", poster:"media/numi.jpg", tall:true,
+      tools:[["flutter","Flutter"],["dart","Dart"],["sqlite","SQLite"],["firebase","Firebase"],["python","Python"],["mysql","MySQL"],["ai","IA"]],
+      links:[{href:"https://github.com/luism7p7/numi-paneles-roles",es:"Ver los paneles de roles",en:"View the role panels",main:true},{href:"https://github.com/geminitodo5-sketch/app-educativa-medellin",es:"Ver el código de la app",en:"View the app code"}],
+      es:{name:"Numi",desc:"App educativa para niños que funciona sin internet",meta:["Equipo","Android + web"],
         sub:"Niños de 1.º a 5.º de primaria en zonas rurales de Medellín",
         what:"Muchos niños de las zonas rurales de Medellín no tienen internet en casa. Numi es una app de celular con actividades de matemáticas, español, ciencias, sociales e inglés, y un asistente de inteligencia artificial que responde preguntas sin necesidad de conexión.",
-        wins:["Funciona 100 % sin internet una vez instalada, incluso en celulares económicos.","49 actividades interactivas con audio: arrastrar, elegir, armar palabras y encontrar parejas.","El progreso se guarda en el celular y se sincroniza cuando vuelve la conexión."],
-        role:"Formé parte del equipo de ingeniería, que programó la lógica de la app, la base de datos, el asistente de IA y la sincronización. El diseño visual lo hizo el equipo de Crosmedia."},
-      en:{name:"Numi",desc:"Educational app for children that works without internet",meta:["Team","Android"],
+        wins:["Funciona 100 % sin internet una vez instalada, incluso en celulares económicos.","49 actividades interactivas con audio: arrastrar, elegir, armar palabras y encontrar parejas.","El progreso se guarda en el celular y se sincroniza cuando vuelve la conexión.","Paneles web de roles en Flask y MySQL: el administrador gestiona actividades, instituciones y usuarios; el docente ve el avance de su grupo y descarga reportes en Excel y PDF (110 pruebas automáticas)."],
+        role:"Formé parte del equipo de ingeniería, que programó la lógica de la app, la base de datos, el asistente de IA y la sincronización. El diseño visual lo hizo el equipo de Crosmedia. En los paneles de roles trabajo en el panel administrativo y el docente.",
+        note:"En reconstrucción: estoy mejorando los paneles de roles (administrador y docente) y su conexión con la app."},
+      en:{name:"Numi",desc:"Educational app for children that works without internet",meta:["Team","Android + web"],
         sub:"Children in grades 1 to 5 in rural Medellín",
         what:"Many children in rural Medellín have no internet at home. Numi is a phone app with math, Spanish, science, social studies and English activities, plus an AI assistant that answers questions without a connection.",
-        wins:["Works 100% offline once installed, even on low-cost phones.","49 interactive activities with audio: drag and drop, multiple choice, word building and matching.","Progress is saved on the phone and syncs when the connection comes back."],
-        role:"I was part of the engineering team, which programmed the app logic, the database, the AI assistant and the syncing. The visual design was done by the Crosmedia team."} },
-    { id:"blackjack", logo:"", video:"media/blackjack.mp4", poster:"media/blackjack.jpg",
+        wins:["Works 100% offline once installed, even on low-cost phones.","49 interactive activities with audio: drag and drop, multiple choice, word building and matching.","Progress is saved on the phone and syncs when the connection comes back.","Role-based web panels in Flask and MySQL: admins manage activities, schools and users; teachers follow their group's progress and download Excel and PDF reports (110 automated tests)."],
+        role:"I was part of the engineering team, which programmed the app logic, the database, the AI assistant and the syncing. The visual design was done by the Crosmedia team. On the role panels I work on the admin and teacher panels.",
+        note:"Being rebuilt: I am improving the role panels (admin and teacher) and their connection to the app."} },
+    { id:"blackjack", status:"fin", logo:"", video:"media/blackjack.mp4", poster:"media/blackjack.jpg",
       tools:[["javascript","JavaScript"],["html5","HTML"],["css3","CSS"],["python","Python"]],
       links:[{href:"https://luism7p7.github.io/BlackJack/Casino/public/",es:"Jugar en línea",en:"Play online",main:true},{href:"https://github.com/luism7p7/BlackJack",es:"Ver el código",en:"View code"}],
       es:{name:"BlackJack Royale",desc:"Casino en el navegador con juego en línea y banco de fichas",meta:["Equipo","Juego web"],
@@ -559,7 +585,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         wins:["Player-vs-computer and real-time multiplayer modes.","A bank to borrow chips.","Saves each player's chips in the browser."],
         role:"I was part of the team that built the game: the rules, the interface, the chip bank and the server for online play.",
         note:"The online version runs the player-vs-computer mode and the bank. Multiplayer needs the server running."} },
-    { id:"glampinghub", logo:"", video:"media/glampinghub.mp4", poster:"media/glampinghub.jpg",
+    { id:"glampinghub", status:"vivo", logo:"", video:"media/glampinghub.mp4", poster:"media/glampinghub.jpg",
       tools:[["java","Java"],["spring","Spring Boot"],["mysql","MySQL"],["javascript","JavaScript"],["html5","HTML"],["css3","CSS"]],
       links:[{href:"https://glampinghub-mzyu.onrender.com",es:"Probar la app",en:"Try the app",main:true},{href:"https://github.com/luism7p7/glampinghub",es:"Ver el código",en:"View code"}],
       es:{name:"GlampingHub",desc:"Plataforma para encontrar y reservar cabañas y glampings",meta:["Individual","Plataforma web"],
@@ -573,7 +599,35 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         what:"A web platform to find and book glamping sites, cabins, farms and parks in Colombia. You search by destination, date and group size, and each place shows its capacity, location and price per night.",
         wins:["Real bookings: pick dates and guests, it works out the total and blocks dates that are already taken.","Accounts with encrypted passwords and a \"My bookings\" section to cancel.","An admin panel to confirm bookings and publish new places.","Live on the internet: a Java Spring Boot server on Render and a cloud MySQL database, with automated tests on GitHub."],
         role:"The whole project: the database, the Java server with Spring Boot, the web pages and putting it online.",
-        note:"You can try it with the demo account (button on the page). It runs on a free plan, so the first visit can take up to a minute while the server wakes up."} }
+        note:"You can try it with the demo account (button on the page). It runs on a free plan, so the first visit can take up to a minute while the server wakes up."} },
+    { id:"vipy", status:"doc", logo:"", image:"media/vipy.svg", poster:"media/vipy.jpg",
+      tools:[["","NFC"],["","QR"],["","Android"],["scrum","Scrum"],["github","GitHub"]],
+      links:[{href:"https://github.com/luism7p7/vipy-anteproyecto",es:"Ver el anteproyecto",en:"View the proposal",main:true},{href:"https://github.com/luism7p7/vipy-anteproyecto/blob/main/docs/E8-documento-final-anteproyecto.pdf",es:"Documento final (PDF)",en:"Final document (PDF)"}],
+      es:{name:"VIPY",desc:"Control de acceso a eventos con credenciales digitales por NFC y QR",meta:["Equipo","Investigación"],
+        sub:"Anteproyecto · Ingeniería de Software, Universidad Cooperativa de Colombia · 2026",
+        what:"En discotecas, eventos y coworkings de Medellín el ingreso todavía se revisa a mano, y los códigos QR se copian con una captura de pantalla. VIPY propone una credencial digital firmada que vive en el celular de la persona y que el personal de puerta verifica con su propio teléfono, por NFC o con un QR firmado, incluso sin internet. Por ahora es un anteproyecto: está documentado y todavía no hay código.",
+        wins:["Investigación de campo: encuesta a 22 personas (16 pasaron por un control manual) y 3 entrevistas con personal de puerta y administradores.","Comparación de 13 alternativas y una brecha definida en cuatro condiciones.","Diseño preliminar de la arquitectura, 5 objetivos específicos y un plan de 16 semanas con la metodología DSRM.","Cronograma, presupuesto y un piloto planeado con al menos 15 usuarios y 3 personas de puerta."],
+        role:"Lo investigamos y documentamos en pareja con Ronald García Muñoz: encuesta, entrevistas, estado del arte, diseño preliminar y documento final. Asesor técnico: Rodolfo Ortega.",
+        note:"En documentación: las entregas E1 a E8 están completas. La siguiente etapa es construir el prototipo."},
+      en:{name:"VIPY",desc:"Event access control with digital credentials over NFC and QR",meta:["Team","Research"],
+        sub:"Research proposal · Software Engineering, Universidad Cooperativa de Colombia · 2026",
+        what:"At nightclubs, events and coworking spaces in Medellín, entry is still checked by hand, and QR codes get copied with a screenshot. VIPY proposes a signed digital credential that lives on the person's phone and that door staff verify with their own phone, over NFC or with a signed QR code, even offline. For now it is a research proposal: it is documented and there is no code yet.",
+        wins:["Field research: a survey of 22 people (16 went through a manual check) and 3 interviews with door staff and managers.","A comparison of 13 alternatives and a gap defined by four conditions.","A preliminary architecture, 5 specific objectives and a 16-week plan using the DSRM methodology.","A schedule, a budget and a pilot planned with at least 15 users and 3 door staff."],
+        role:"Researched and documented as a pair with Ronald García Muñoz: survey, interviews, state of the art, preliminary design and final document. Technical advisor: Rodolfo Ortega.",
+        note:"In documentation: deliverables E1 to E8 are complete. The next stage is building the prototype."} },
+    { id:"ubicua", status:"fin", logo:"", image:"media/ubicua.jpg", poster:"media/ubicua.jpg",
+      tools:[["cplusplus","C++"],["","Arduino"],["","Tinkercad"],["git","Git"],["github","GitHub"]],
+      links:[{href:"https://github.com/luism7p7/laboratorios-computacion-ubicua",es:"Ver el código",en:"View code",main:true},{href:"https://www.youtube.com/watch?v=429Tt-C3h7E",es:"Ver el video del proyecto final",en:"Watch the final project video"}],
+      es:{name:"Laboratorios IoT",desc:"Arduino y C++: sensores, un robot móvil y control de acceso con RFID",meta:["Académico","Arduino"],
+        sub:"Computación Ubicua · Ingeniería de Software",
+        what:"Los laboratorios de la materia Computación Ubicua: circuitos con Arduino programados en C++, desde un LED que parpadea hasta un robot con dos motores y un control de acceso con tarjetas RFID.",
+        wins:["Proyecto final: un lector RFID valida la tarjeta y, si está autorizada, activa un motor durante 5 segundos con un transistor y PWM.","Robot móvil con puente H: avanza, gira y frena, y solo arranca con una tarjeta autorizada.","Sensores de distancia, temperatura y humedad con lecturas en una pantalla LCD.","Programación sin bloqueos con millis() y circuitos simulados en Tinkercad."],
+        role:"Armé los circuitos, programé los sketches en C++ y documenté cada laboratorio en el repositorio."},
+      en:{name:"IoT Labs",desc:"Arduino and C++: sensors, a mobile robot and RFID access control",meta:["Academic","Arduino"],
+        sub:"Ubiquitous Computing · Software Engineering",
+        what:"The labs from my Ubiquitous Computing course: Arduino circuits programmed in C++, from a blinking LED to a two-motor robot and an access control system with RFID cards.",
+        wins:["Final project: an RFID reader checks the card and, if it is authorized, runs a motor for 5 seconds through a transistor with PWM.","A mobile robot with an H-bridge: it drives, turns and brakes, and only starts with an authorized card.","Distance, temperature and humidity sensors with readings on an LCD screen.","Non-blocking code with millis() and circuits simulated in Tinkercad."],
+        role:"I built the circuits, wrote the C++ sketches and documented each lab in the repository."} }
   ];
   var UI = { es:{what:"Qué es",wins:"Lo que logra",role:"Mi parte",tools:"Herramientas",label:"Proyecto",close:"Cerrar"}, en:{what:"What it is",wins:"What it does",role:"My part",tools:"Tools",label:"Project",close:"Close"} };
   var EN = {
@@ -581,8 +635,8 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     "h-l":"Software Engineering · Medellín","h-a":"Available for an internship from November 2026",
     "h-p":"I build <b>websites</b>, <b>mobile apps</b> and <b>data analyses</b>. I study Software Engineering at Universidad Cooperativa de Colombia, and before that I ran a business serving customers.",
     "h-b1":"See projects","h-b2":"View resume",
-    f1:"projects with a video demo",f2:"website published and in use",f3:"years of customer-facing experience",f4b:"7th",f4:"semester of Software Engineering",
-    "p-l":"Selected work","p-h":"Projects","p-p":"Every project has a real video. Hover to watch it and click to see what it is, what I did and how to try it.",
+    f1:"projects, 2 of them live today",f2:"website published and in use",f3:"years of customer-facing experience",f4b:"7th",f4:"semester of Software Engineering",
+    "p-l":"Selected work","p-h":"Projects","p-p":"Each project shows its current status. Hover for a preview and click to see what it is, what I did and how to try it.",
     "d-l":"Data analytics","d-h":"From data <em>to decisions</em>","d-p":"Analyses built in Google Colab for my Data Analytics course, explained without jargon.",
     "a-q":"Can you predict the size of a flower from its other measurements?",
     "a-p":"Using 150 real flowers from the Iris dataset, I trained a <b>machine learning</b> model that estimates petal length from the other three measurements. Then I tested it on flowers it had never seen.",
@@ -596,13 +650,15 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     "ab-1":"For a year and a half I served customers, negotiated with suppliers and managed a business's inventory. That experience taught me to understand what the person who will use what I build actually needs.",
     "ab-2":"<b>How I work:</b> as part of a team, with order and good practices, and I pick up new tools quickly. Outside of work I play chess, read and spend time with my family.",
     tl1:"Professional internship",tl1s:"From November, in software development or data",tl2:"7th semester · Numi",tl2s:"Data Analytics, Java course (Udemy) and an educational app with AI",tl3:"Software Engineering",tl4:"Manager and customer service",tl5:"High school diploma",
-    "nb-l":"Loading…",cvtab:"Resume",pdf:"Download PDF","ct-l":"Contact","ct-h":"Have an internship? <em>Let’s talk.</em>",copy:"Copy email",ft:"Updated October 2026"
+    "nb-l":"Loading…",cvtab:"Resume",pdf:"Download PDF","ct-l":"Contact","ct-h":"Have an internship? <em>Let’s talk.</em>",copy:"Copy email",ft:"Updated November 2026"
   };
   var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-i18n]")), ES = {};
   nodes.forEach(function(n){ var k=n.getAttribute("data-i18n"); if(!(k in ES)) ES[k]=n.innerHTML; });
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
   var ARROW='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
   function byId(id){ for(var i=0;i<P.length;i++) if(P[i].id===id) return P[i]; return null; }
+  var ST={vivo:{es:"En línea",en:"Live"},fin:{es:"Terminado",en:"Completed"},obra:{es:"En reconstrucción",en:"Being rebuilt"},doc:{es:"En documentación",en:"In documentation"}};
+  function stHtml(p){ var k=p.status; if(!k) return ''; return '<span class="st st-'+k+'"><i aria-hidden="true">'+(k==="doc"?'<b></b><b></b><b></b>':'')+'</i>'+esc(ST[k][lang])+'</span>'; }
   function metaHtml(t,cls){ return t.meta.map(function(m,i){ return '<span class="'+cls+(t.live&&i===1?' live':'')+'">'+esc(m)+'</span>'; }).join(''); }
 
   /* project index */
@@ -613,12 +669,12 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
       return '<li class="row rv"><button type="button" data-id="'+p.id+'" aria-haspopup="dialog">'+
         '<span class="row-main"><span class="row-name">'+logo+esc(t.name)+'</span><span class="row-desc">'+esc(t.desc)+'</span></span>'+
         '<span class="row-thumb"><img src="'+p.poster+'" alt="" loading="lazy"></span>'+
-        '<span class="row-meta">'+metaHtml(t,'m')+'<span class="row-go">'+ARROW+'</span></span></button></li>';
+        '<span class="row-meta">'+stHtml(p)+metaHtml(t,'m')+'<span class="row-go">'+ARROW+'</span></span></button></li>';
     }).join('');
   }
 
   /* floating video preview */
-  var peek=document.getElementById("peek"), pv=peek.querySelector("video");
+  var peek=document.getElementById("peek"), pv=peek.querySelector("video"), pimg=peek.querySelector("img");
   var mx=0,my=0,px=0,py=0,peekOn=false,raf=null;
   function loop(){
     px+=(mx-px)*.14; py+=(my-py)*.14;
@@ -629,11 +685,12 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   index.addEventListener("pointerover",function(e){
     var b=e.target.closest("button[data-id]"); if(!b||e.pointerType!=="mouse") return;
     var p=byId(b.getAttribute("data-id"));
-    if(pv.getAttribute("src")!==p.video){ pv.poster=p.poster; pv.src=p.video; }
+    if(p.video){ pimg.hidden=true; pv.hidden=false; if(pv.getAttribute("src")!==p.video){ pv.poster=p.poster; pv.src=p.video; } }
+    else { pv.pause(); pv.hidden=true; pimg.hidden=false; if(pimg.getAttribute("src")!==p.poster) pimg.src=p.poster; }
     peek.classList.toggle("tall",!!p.tall);
     if(!peekOn){ px=mx=e.clientX; py=my=e.clientY; }
     peekOn=true; peek.classList.add("on");
-    if(!reduce){ var pr=pv.play(); if(pr&&pr.catch) pr.catch(function(){}); }
+    if(!reduce&&p.video){ var pr=pv.play(); if(pr&&pr.catch) pr.catch(function(){}); }
     if(!raf) raf=requestAnimationFrame(loop);
   });
   index.addEventListener("pointerleave",function(){ peekOn=false; peek.classList.remove("on"); pv.pause(); });
@@ -642,14 +699,14 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   var sheet=document.getElementById("sheet"), shBody=document.getElementById("sh-body"), shLabel=document.getElementById("sh-label"), shClose=document.getElementById("sh-close"), current=null;
   function fillSheet(p){
     var t=p[lang], u=UI[lang];
-    var media='<div class="sheet-media'+(p.tall?' tall':'')+'"><video src="'+p.video+'" poster="'+p.poster+'" controls muted loop playsinline'+(reduce?'':' autoplay')+'></video></div>';
+    var media='<div class="sheet-media'+(p.tall?' tall':'')+'">'+(p.video?'<video src="'+p.video+'" poster="'+p.poster+'" controls muted loop playsinline'+(reduce?'':' autoplay')+'></video>':'<img src="'+p.image+'" alt="'+esc(t.name)+'">')+'</div>';
     var head='<div class="sheet-head">'+(p.logo?'<img src="'+p.logo+'" alt=""'+(p.round?' class="round"':'')+'>':'')+'<div><h3 id="sh-title">'+esc(t.name)+'</h3><p>'+esc(t.sub)+'</p></div></div>';
-    var tags='<div class="tags">'+metaHtml(t,'tag')+'</div>';
+    var tags='<div class="tags">'+stHtml(p)+metaHtml(t,'tag')+'</div>';
     var links=p.links.length?'<div class="cta">'+p.links.map(function(l){ return '<a class="btn'+(l.main?' solid':'')+'" href="'+l.href+'" target="_blank" rel="noopener">'+esc(l[lang])+' <span class="arr" aria-hidden="true">↗</span></a>'; }).join('')+'</div>':'';
     var kv='<div class="kv"><div><h4>'+u.what+'</h4><p>'+esc(t.what)+'</p></div>'+
       '<div><h4>'+u.wins+'</h4><ul>'+t.wins.map(function(w){return '<li>'+esc(w)+'</li>';}).join('')+'</ul></div>'+
       '<div><h4>'+u.role+'</h4><p>'+esc(t.role)+'</p></div>'+(t.note?'<p class="note">'+esc(t.note)+'</p>':'')+
-      '<div><h4>'+u.tools+'</h4><div class="toolrow">'+p.tools.map(function(x){return '<span class="chip"><i class="ic i-'+x[0]+'"></i>'+esc(x[1])+'</span>';}).join('')+'</div></div></div>';
+      '<div><h4>'+u.tools+'</h4><div class="toolrow">'+p.tools.map(function(x){return '<span class="chip">'+(x[0]?'<i class="ic i-'+x[0]+'"></i>':'')+esc(x[1])+'</span>';}).join('')+'</div></div></div>';
     shLabel.textContent=u.label; shClose.setAttribute("aria-label",u.close);
     shBody.innerHTML=media+head+tags+links+kv;
   }
