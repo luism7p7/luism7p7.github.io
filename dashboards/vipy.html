@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VIPY · Tablero del anteproyecto</title>
+<style>
+:root{
+  --canvas:#EAEAEA; --card:#FFFFFF; --ink:#252423; --ink2:#605E5C; --ink3:#8A8886; --line:#E1DFDD; --grid:#EDEBE9;
+  --c1:#118DFF; --c2:#E66C37; --c3:#744EC2; --c4:#1AAB40; --soft:#C7E0FF; --muted:#C8C6C4; --bar:#F3F2F1;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--canvas);color:var(--ink);font:14px/1.4 "Segoe UI","Segoe UI Web",-apple-system,system-ui,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+header{background:#fff;border-bottom:1px solid var(--line);padding:12px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+header .logo{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,#7FC0CC,#2F6F80);display:grid;place-items:center;flex:none}
+header .logo svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round}
+header h1{margin:0;font-size:17px;font-weight:600}
+header p{margin:0;color:var(--ink2);font-size:12.5px}
+header .grow{flex:1 1 auto}
+.pill{font-size:11.5px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:#FAF9F8;white-space:nowrap}
+main{padding:16px 20px 90px;max-width:1280px;margin:0 auto}
+.page{display:none;gap:14px;grid-template-columns:repeat(12,minmax(0,1fr))}
+.page.on{display:grid}
+.v{background:var(--card);border-radius:4px;box-shadow:0 1.6px 3.6px rgba(0,0,0,.13),0 .3px .9px rgba(0,0,0,.11);padding:14px 16px 12px;min-width:0;position:relative;grid-column:span 6}
+.v.s3{grid-column:span 3}.v.s4{grid-column:span 4}.v.s5{grid-column:span 5}.v.s7{grid-column:span 7}.v.s8{grid-column:span 8}.v.s12{grid-column:span 12}
+@media (max-width:900px){.v,.v.s3,.v.s4,.v.s5,.v.s7,.v.s8{grid-column:span 12}.v.s3{grid-column:span 6}}
+@media (max-width:520px){.v.s3{grid-column:span 12}main{padding:12px 12px 90px}}
+.vt{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:8px}
+.vt h2{margin:0;font-size:14px;font-weight:600;color:var(--ink)}
+.vt small{display:block;color:var(--ink3);font-size:11.5px;font-weight:400;margin-top:2px}
+.tbtn{all:unset;cursor:pointer;font-size:11.5px;color:var(--ink2);padding:3px 8px;border-radius:3px;border:1px solid transparent;white-space:nowrap}
+.tbtn:hover,.tbtn:focus-visible{border-color:var(--line);background:#FAF9F8}
+.kpi{display:flex;flex-direction:column;justify-content:center;min-height:118px}
+.kpi b{font-size:38px;font-weight:600;line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--ink2);font-size:12.5px;margin-top:8px}
+.kpi i{font-style:normal;color:var(--ink3);font-size:11.5px;margin-top:4px}
+svg.ch{width:100%;height:auto;display:block;overflow:visible}
+svg.ch text{font-family:inherit;fill:var(--ink2);font-size:11.5px}
+svg.ch .lab{fill:var(--ink);font-size:12px}
+svg.ch .val{fill:var(--ink);font-size:12px;font-weight:600}
+svg.ch .gl{stroke:var(--grid);stroke-width:1}
+svg.ch .mk{transition:opacity .2s}
+svg.ch .hit{fill:transparent;cursor:pointer}
+svg.ch.sel .mk{opacity:.28}
+svg.ch.sel .mk.on{opacity:1}
+.hb{display:grid;gap:6px;margin:4px 0 2px}
+.hb-r{display:grid;grid-template-columns:minmax(90px,var(--lw)) minmax(60px,1fr) auto;gap:10px;align-items:center;cursor:pointer;padding:3px 0;transition:opacity .2s}
+.hb-k{text-align:right;font-size:12.5px;color:var(--ink);line-height:1.25}
+.hb-t{height:20px;background:#F3F2F1;border-radius:2px;position:relative;overflow:hidden}
+.hb-t i{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0}
+.hb-v{font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;min-width:64px}
+.hb-v small{font-weight:400;color:var(--ink2);font-size:11.5px}
+.hb.sel .hb-r{opacity:.3}.hb.sel .hb-r.on{opacity:1}
+@media (max-width:520px){.hb-r{grid-template-columns:minmax(0,1fr) auto}.hb-k{grid-column:1 / -1;text-align:left}.hb-t{grid-column:1}}
+table.dt{width:100%;border-collapse:collapse;font-size:12.5px}
+table.dt th,table.dt td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--grid)}
+table.dt th{font-weight:600;color:var(--ink2);background:#FAF9F8}
+table.dt td.n{text-align:right;font-variant-numeric:tabular-nums}
+.leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11.5px;color:var(--ink2);margin:2px 0 8px}
+.leg span{display:inline-flex;align-items:center;gap:6px}
+.leg i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.note{font-size:11.5px;color:var(--ink3);margin:8px 0 0}
+.mx{width:100%;border-collapse:separate;border-spacing:2px;font-size:12px}
+.mx th{font-weight:600;color:var(--ink2);text-align:left;padding:4px 6px;font-size:11.5px}
+.mx td{padding:6px 8px;border-radius:3px}
+.mx td.alt{color:var(--ink);white-space:nowrap}
+.mx td.c{text-align:center;font-weight:600;font-size:11.5px;min-width:74px}
+.c-si{background:var(--c1);color:#fff}.c-pa{background:var(--soft);color:#0B4F94}.c-no{background:var(--bar);color:var(--ink3)}
+.mx tr.us td.alt{font-weight:700}
+.mx tr.us td{outline:2px solid transparent}
+.mx tr.us td.c{box-shadow:inset 0 0 0 2px #0B4F94}
+.mx tr:hover td.alt{background:#FAF9F8}
+.mxw{overflow-x:auto}
+#tip{position:fixed;z-index:20;pointer-events:none;background:#fff;color:var(--ink);border-radius:3px;box-shadow:0 6.4px 14.4px rgba(0,0,0,.13),0 1.2px 3.6px rgba(0,0,0,.11);padding:8px 10px;font-size:12px;opacity:0;transition:opacity .12s;max-width:260px}
+#tip.on{opacity:1}
+#tip b{display:block;font-weight:600;margin-bottom:2px}
+#tip span{color:var(--ink2)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;gap:2px;padding:0 12px;overflow-x:auto;z-index:10}
+nav.tabs button{all:unset;cursor:pointer;padding:11px 16px;font-size:13px;color:var(--ink2);border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);font-weight:600;border-bottom-color:#F2C811}
+nav.tabs button:hover{background:#FAF9F8}
+nav.tabs .src{margin-left:auto;align-self:center;font-size:11px;color:var(--ink3);padding:0 6px;white-space:nowrap}
+.gantt-wrap{overflow-x:auto}
+.hide{display:none!important}
+:focus-visible{outline:2px solid var(--c1);outline-offset:2px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="11" height="18" rx="2"/><path d="M17.5 8.5a5 5 0 0 1 0 7M20 6a8.5 8.5 0 0 1 0 12"/></svg></div>
+  <div><h1>VIPY · Tablero del anteproyecto</h1><p>Encuesta exploratoria, comparación de alternativas, plan y presupuesto</p></div>
+  <div class="grow"></div>
+  <span class="pill">Encuesta: 22 respuestas válidas de 31 · 22 sep. 2026</span>
+  <span class="pill">Muestra por conveniencia, no representativa</span>
+</header>
+
+<main>
+  <!-- PAGE 1 -->
+  <section class="page on" id="pg1" aria-label="Problema en la puerta">
+    <div class="v s3 kpi"><b>73 %</b><span>pasó por un control manual en su última visita</span><i>16 de 22 personas</i></div>
+    <div class="v s3 kpi"><b>18 de 22</b><span>se han ido alguna vez de un lugar por la fila</span><i>82 % de la muestra</i></div>
+    <div class="v s3 kpi"><b>12 de 22</b><span>han visto o sabido de un ingreso con una credencial copiada o prestada</span><i>6 lo vieron · 6 lo supieron</i></div>
+    <div class="v s3 kpi"><b>0</b><span>personas usaron un lector automático para entrar</span><i>solo 1 mostró un QR</i></div>
+
+    <div class="v s7" data-viz="control"></div>
+    <div class="v s5" data-viz="espera"></div>
+    <div class="v s5" data-viz="copia"></div>
+    <div class="v s7" data-viz="testimonios"></div>
+  </section>
+
+  <!-- PAGE 2 -->
+  <section class="page" id="pg2" aria-label="Teléfonos y alternativas">
+    <div class="v s3 kpi"><b>11 / 11</b><span>usan iPhone / Android</span><i>la mitad queda fuera de HCE en Android</i></div>
+    <div class="v s3 kpi"><b>4 de 11</b><span>usuarios de Android confirman que su teléfono tiene NFC</span><i>5 dicen que no · 2 no saben</i></div>
+    <div class="v s3 kpi"><b>13</b><span>alternativas comparadas frente a C1, C2 y C3</span><i>ninguna cumple las tres a la vez</i></div>
+    <div class="v s3 kpi"><b>17 de 22</b><span>entraron a dos o más lugares</span><i>solo 6 tienen dos o más credenciales</i></div>
+
+    <div class="v s5" data-viz="telefonos"></div>
+    <div class="v s7" data-viz="cobertura"></div>
+    <div class="v s12" data-viz="matriz"></div>
+  </section>
+
+  <!-- PAGE 3 -->
+  <section class="page" id="pg3" aria-label="Plan y presupuesto">
+    <div class="v s3 kpi"><b>16</b><span>semanas de ejecución con DSRM</span><i>6 fases · 17 actividades · 7 hitos</i></div>
+    <div class="v s3 kpi"><b>$2,76 M</b><span>presupuesto valorado (COP 2026)</span><i>COP 2.759.840 + rubros pendientes</i></div>
+    <div class="v s3 kpi"><b>320 h</b><span>de dedicación del equipo</span><i>2 personas × 10 h/sem × 16 sem</i></div>
+    <div class="v s3 kpi"><b>≥ 15 + 3</b><span>usuarios y personas de puerta en el piloto</span><i>SUS y TAM/UTAUT</i></div>
+
+    <div class="v s12" data-viz="gantt"></div>
+    <div class="v s7" data-viz="presupuesto"></div>
+    <div class="v s5" data-viz="pasajes"></div>
+  </section>
+</main>
+
+<nav class="tabs" role="tablist" aria-label="Páginas del tablero">
+  <button role="tab" aria-selected="true" data-pg="pg1">Problema en la puerta</button>
+  <button role="tab" aria-selected="false" data-pg="pg2">Teléfonos y alternativas</button>
+  <button role="tab" aria-selected="false" data-pg="pg3">Plan y presupuesto</button>
+  <span class="src">Fuente: documento final E8 del anteproyecto VIPY (Anexo A y entrevistas)</span>
+</nav>
+<div id="tip" role="tooltip"></div>
+
+<script>
+(function(){
+"use strict";
+var C1="#118DFF",C2="#E66C37",C3="#744EC2",C4="#1AAB40",MUTED="#C8C6C4";
+var NS="http://www.w3.org/2000/svg";
+var tip=document.getElementById("tip");
+function fmt(n){ return n.toLocaleString("es-CO"); }
+function cop(n){ return "$"+n.toLocaleString("es-CO"); }
+function showTip(e,t,s){ tip.innerHTML="<b>"+t+"</b><span>"+s+"</span>"; tip.classList.add("on"); moveTip(e); }
+function moveTip(e){ var x=e.clientX+14,y=e.clientY+14,w=tip.offsetWidth,h=tip.offsetHeight; if(x+w>innerWidth-8)x=e.clientX-w-14; if(y+h>innerHeight-8)y=e.clientY-h-14; tip.style.left=x+"px"; tip.style.top=y+"px"; }
+function hideTip(){ tip.classList.remove("on"); }
+function el(n,a,p){ var e=document.createElementNS(NS,n); for(var k in a) e.setAttribute(k,a[k]); if(p) p.appendChild(e); return e; }
+function txt(p,x,y,s,cls,anchor){ var t=el("text",{x:x,y:y,"class":cls||"","text-anchor":anchor||"start"},p); t.textContent=s; return t; }
+function rr(x,y,w,h,r,round){ /* bar with rounded data-end on the right (horizontal) */
+  r=Math.min(r,w/2,h/2); if(w<=0) return "";
+  return round==="top" ? "M"+x+","+(y+h)+"V"+(y+r)+"Q"+x+","+y+" "+(x+r)+","+y+"H"+(x+w-r)+"Q"+(x+w)+","+y+" "+(x+w)+","+(y+r)+"V"+(y+h)+"Z"
+    : "M"+x+","+y+"H"+(x+w-r)+"Q"+(x+w)+","+y+" "+(x+w)+","+(y+r)+"V"+(y+h-r)+"Q"+(x+w)+","+(y+h)+" "+(x+w-r)+","+(y+h)+"H"+x+"Z";
+}
+
+/* visual shell: title, table toggle */
+function shell(box,title,sub,rows,cols){
+  box.innerHTML='<div class="vt"><div><h2>'+title+'</h2>'+(sub?'<small>'+sub+'</small>':'')+'</div>'+(rows?'<button type="button" class="tbtn" aria-pressed="false">Ver como tabla</button>':'')+'</div><div class="body"></div>'+(rows?'<div class="tbl hide"></div>':'');
+  var body=box.querySelector(".body");
+  if(rows){
+    var tb=box.querySelector(".tbl"), bt=box.querySelector(".tbtn");
+    tb.innerHTML='<table class="dt"><thead><tr>'+cols.map(function(c,i){return '<th'+(i?' style="text-align:right"':'')+'>'+c+'</th>';}).join('')+'</tr></thead><tbody>'+rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td'+(i?' class="n"':'')+'>'+c+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table>';
+    bt.addEventListener("click",function(){ var on=tb.classList.toggle("hide"); body.classList.toggle("hide",!on); bt.setAttribute("aria-pressed",String(!on)); bt.textContent=on?"Ver como tabla":"Ver gráfico"; });
+  }
+  return body;
+}
+
+/* horizontal bars, one series (HTML so text keeps one size); click to highlight */
+function hbars(body,data,opt){
+  opt=opt||{}; var max=opt.max||Math.max.apply(null,data.map(function(d){return d.v;}));
+  var wrap=document.createElement("div"); wrap.className="hb"; wrap.setAttribute("role","img"); wrap.setAttribute("aria-label",opt.aria||"");
+  wrap.style.setProperty("--lw",(opt.lw||150)+"px");
+  data.forEach(function(d){
+    var r=document.createElement("div"); r.className="hb-r mk";
+    var pct=d.v?Math.max(1.2,d.v/max*100):0;
+    r.innerHTML='<span class="hb-k">'+d.k+'</span><span class="hb-t"><i style="width:'+pct+'%;background:'+(d.c||opt.color||C1)+'"></i></span><span class="hb-v">'+(opt.fmt||String)(d.v)+(d.s?' <small>('+d.s+')</small>':'')+'</span>';
+    r.addEventListener("mousemove",function(e){ showTip(e,d.k,d.tip||((opt.fmt||String)(d.v)+(opt.unit||""))); });
+    r.addEventListener("mouseleave",hideTip);
+    r.addEventListener("click",function(){ var on=r.classList.contains("on"); wrap.querySelectorAll(".mk").forEach(function(m){m.classList.remove("on");}); wrap.classList.toggle("sel",!on); if(!on) r.classList.add("on"); });
+    wrap.appendChild(r);
+  });
+  body.appendChild(wrap); return wrap;
+}
+
+/* 100% stacked bar with legend */
+function stack(body,parts,opt){
+  var W=560,H=64,x=0,tot=parts.reduce(function(a,p){return a+p.v;},0);
+  var leg=document.createElement("div"); leg.className="leg"; leg.innerHTML=parts.map(function(p){return '<span><i style="background:'+p.c+'"></i>'+p.k+'</span>';}).join(''); body.appendChild(leg);
+  var svg=el("svg",{"class":"ch",viewBox:"0 0 "+W+" "+H,role:"img","aria-label":opt&&opt.aria||""},body);
+  parts.forEach(function(p,i){
+    var w=W*p.v/tot, g=el("g",{"class":"mk"},svg), gap=i<parts.length-1?2:0;
+    var r=el("rect",{x:x,y:8,width:Math.max(0,w-gap),height:30,fill:p.c,rx:(i===0||i===parts.length-1)?4:0},g);
+    if(w>40) txt(g,x+w/2,58,p.v+" ("+Math.round(p.v/tot*100)+" %)","val","middle");
+    var hit=el("rect",{"class":"hit",x:x,y:0,width:w,height:H},g);
+    hit.addEventListener("mousemove",function(e){ showTip(e,p.k,p.v+" de "+tot+" personas · "+Math.round(p.v/tot*100)+" %"); });
+    hit.addEventListener("mouseleave",hideTip);
+    x+=w;
+  });
+}
+
+var V={
+  control:function(b){
+    var d=[{k:"Manilla, sello o tarjeta",v:11},{k:"Cédula",v:10},{k:"Lista",v:2},{k:"QR en el celular",v:1},{k:"Lector automático",v:0},{k:"Sin control (declarado)",v:9,c:MUTED}];
+    var body=shell(b,"Forma de control en la última visita","Personas (n = 22). Varias respuestas posibles",d.map(function(x){return [x.k,x.v,Math.round(x.v/22*100)+" %"];}),["Forma de control","Personas","% de 22"]);
+    d.forEach(function(x){ x.s=Math.round(x.v/22*100)+" %"; x.tip=x.v+" de 22 personas"; });
+    hbars(body,d,{lw:170,max:22,aria:"Barras: manilla 11, cédula 10, lista 2, QR 1, lector 0, sin control 9"});
+    body.insertAdjacentHTML("beforeend",'<p class="note">Tres personas marcaron “sin control” junto con otra opción; se reportan como respuestas inconsistentes. Haz clic en una barra para resaltarla.</p>');
+  },
+  espera:function(b){
+    var p=[{k:"Menos de 5 min",v:12,c:C1},{k:"De 5 a 15 min",v:6,c:C3},{k:"Más de 15 min",v:4,c:C2}];
+    var body=shell(b,"Tiempo de espera en la última visita","Autorreporte, n = 22",p.map(function(x){return [x.k,x.v];}),["Espera","Personas"]);
+    stack(body,p,{aria:"12 esperaron menos de 5 minutos, 6 entre 5 y 15, 4 más de 15"});
+    body.insertAdjacentHTML("beforeend",'<p class="note">“De 5 a 15 min” es el resto de la muestra (22 − 12 − 4). En la Entrevista 1, un portero describe filas de unos 30 min en hora pico.</p>');
+  },
+  copia:function(b){
+    var p=[{k:"Lo vieron",v:6,c:C2},{k:"Lo supieron",v:6,c:C3},{k:"No lo han visto ni sabido",v:10,c:MUTED}];
+    var body=shell(b,"¿Ingresos con una credencial copiada o prestada?","n = 22 · muestra que el fenómeno se conoce, no su frecuencia",p.map(function(x){return [x.k,x.v];}),["Respuesta","Personas"]);
+    stack(body,p,{aria:"6 lo vieron, 6 lo supieron, 10 no"});
+  },
+  testimonios:function(b){
+    var d=[{k:"Portero (Entrevista 1)",v:20,lo:15,s:"15–20",tip:"Entre 15 y 20 capturas de QR reenviadas por evento grande"},{k:"Organizador (Entrevista 3)",v:50,lo:30,s:"30–50",tip:"Entre 30 y 50 capturas ya escaneadas por evento de 2.000 personas"}];
+    var body=shell(b,"Capturas reenviadas por evento, según los entrevistados","Rango estimado por cada entrevistado (no medido)",d.map(function(x){return [x.k,x.lo,x.v];}),["Fuente","Mínimo","Máximo"]);
+    var W=560,lw=190,rowH=46,H=d.length*rowH+30,pw=W-lw-50,max=60;
+    var svg=el("svg",{"class":"ch",viewBox:"0 0 "+W+" "+H,role:"img","aria-label":"Rangos: portero 15 a 20, organizador 30 a 50 capturas por evento"},body);
+    [0,10,20,30,40,50,60].forEach(function(t){ var x=lw+pw*t/max; el("line",{x1:x,x2:x,y1:0,y2:H-22,"class":"gl"},svg); txt(svg,x,H-6,t,"","middle"); });
+    d.forEach(function(x,i){
+      var y=i*rowH+10, g=el("g",{"class":"mk"},svg), a=lw+pw*x.lo/max, z=lw+pw*x.v/max;
+      txt(g,lw-10,y+16,x.k,"lab","end");
+      el("rect",{x:a,y:y+6,width:z-a,height:16,rx:4,fill:C2},g);
+      txt(g,z+8,y+19,x.s,"val");
+      var hit=el("rect",{"class":"hit",x:0,y:y,width:W,height:rowH},g);
+      hit.addEventListener("mousemove",function(e){ showTip(e,x.k,x.tip); }); hit.addEventListener("mouseleave",hideTip);
+    });
+  },
+  telefonos:function(b){
+    var p=[{k:"iPhone",v:11,c:MUTED},{k:"Android con NFC",v:4,c:C1},{k:"Android sin NFC",v:5,c:C3},{k:"Android, no sabe",v:2,c:C2}];
+    var body=shell(b,"Teléfonos de la muestra","n = 22 · NFC autorreportado",p.map(function(x){return [x.k,x.v];}),["Teléfono","Personas"]);
+    stack(body,p,{aria:"11 iPhone, 4 Android con NFC, 5 sin NFC, 2 no saben"});
+    body.insertAdjacentHTML("beforeend",'<p class="note">Por esto el prototipo combina NFC (HCE en Android) con un QR firmado de desafío y respuesta que funciona con cualquier cámara.</p>');
+  },
+  cobertura:function(b){
+    var d=[{k:"Cualquier teléfono con cámara (QR firmado)",v:22,tip:"22 de 22: el QR bidireccional no depende de NFC"},{k:"Android (prototipo, NFC o QR)",v:11,tip:"11 de 22: el prototipo no da soporte a iOS en esta etapa"},{k:"Android con NFC confirmado (HCE)",v:4,tip:"4 de 22: único grupo que hoy puede usar HCE"}];
+    var body=shell(b,"Quién podría presentar la credencial, por canal","Personas de la muestra (n = 22) que cumplen el requisito de cada vía",d.map(function(x){return [x.k,x.v,Math.round(x.v/22*100)+" %"];}),["Vía","Personas","% de 22"]);
+    d.forEach(function(x){x.s=Math.round(x.v/22*100)+" %";});
+    hbars(body,d,{lw:250,max:22,aria:"QR firmado 22, Android 11, Android con NFC 4"});
+    body.insertAdjacentHTML("beforeend",'<p class="note">La cobertura (condición C4) se mide y se reporta; no se usa para descartar alternativas.</p>');
+  },
+  matriz:function(b){
+    var S="si",P="pa",N="no";
+    var rows=[
+      ["Verificación manual",S,N,P],["Tarjeta o manilla contactless",N,P,N],["Lector con controlador",N,P,N],["Acceso móvil comercial con lector",N,S,P],
+      ["Check-in por QR desde el teléfono",S,N,N],["Boleta con QR dinámico de un organizador",N,P,N],["Manilla con chip y lectores",N,P,N],
+      ["Prototipos NFC con receptores",N,P,N],["App Android con HCE y lector externo",N,S,N],["QR con validez limitada y cámara",N,N,N],
+      ["QR dinámico y Bluetooth del fabricante",N,P,N],["Credencial móvil readerless",P,S,S],["Tarjeta Cívica desde el celular",N,N,P]];
+    var L={si:"Sí",pa:"Parcial",no:"No"};
+    var body=shell(b,"Comparación de 13 alternativas frente a la brecha","C1 sin hardware en la puerta · C2 autentica al titular · C3 credencial persistente y multisitio",rows.map(function(r){return [r[0],L[r[1]],L[r[2]],L[r[3]]];}),["Alternativa","C1","C2","C3"]);
+    var html='<div class="leg"><span><i style="background:'+C1+'"></i>Sí</span><span><i style="background:#C7E0FF"></i>Parcial, depende o según el esquema</span><span><i style="background:#F3F2F1;border:1px solid #E1DFDD"></i>No, no reportado o no demostrado</span></div><div class="mxw"><table class="mx"><thead><tr><th>Alternativa</th><th>C1</th><th>C2</th><th>C3</th><th style="text-align:right">Cumple</th></tr></thead><tbody>';
+    rows.forEach(function(r){ var n=r.slice(1).filter(function(x){return x===S;}).length; html+='<tr><td class="alt">'+r[0]+'</td>'+r.slice(1).map(function(x){return '<td class="c c-'+x+'">'+L[x]+'</td>';}).join('')+'<td style="text-align:right;color:#605E5C">'+n+' de 3</td></tr>'; });
+    html+='<tr class="us"><td class="alt">VIPY (lo que propone el prototipo)</td><td class="c c-si">Meta</td><td class="c c-si">Meta</td><td class="c c-si">Meta</td><td style="text-align:right;color:#605E5C">por evaluar</td></tr></tbody></table></div>';
+    html+='<p class="note">Codificación a partir de la Tabla III del documento final, basada en documentación pública y entrevistas; ninguna alternativa fue probada en funcionamiento. “Parcial” agrupa respuestas como “depende del esquema”, “variable” o “solo dentro del proveedor”.</p>';
+    body.innerHTML=html;
+  },
+  gantt:function(b){
+    var F=[{k:"F1 · Caracterización y requisitos",a:1,z:3,h:[["H1",3,"Requisitos aprobados"]],c:C1},{k:"F2 · Arquitectura y protocolo",a:3,z:5,h:[["H2",5,"Protocolo aprobado"]],c:C1},
+      {k:"F3 · Implementación iterativa",a:5,z:11,h:[["H3",6,"Canal NFC entre dos teléfonos"],["H4",11,"Versión evaluada"]],c:C3},{k:"F4 · Evaluación técnica y de seguridad",a:10,z:13,h:[["H5",13,"Evaluación técnica cerrada"]],c:C2},
+      {k:"F5 · Piloto de validación",a:12,z:15,h:[["H6",15,"Piloto cerrado"]],c:C2},{k:"F6 · Análisis y comunicación",a:15,z:16,h:[["H7",16,"Informe final y demostración"]],c:C4}];
+    var body=shell(b,"Cronograma de 16 semanas (DSRM, ciclos de dos semanas)","Fases y hitos; el hito se marca en la semana en que se cumple",F.map(function(f){return [f.k,"S"+f.a+"–S"+f.z,f.h.map(function(h){return h[0]+" (S"+h[1]+")";}).join(", ")];}),["Fase","Semanas","Hitos"]);
+    var wrap=document.createElement("div"); wrap.className="gantt-wrap"; body.appendChild(wrap);
+    var W=1040,lw=260,rowH=40,top=26,H=top+F.length*rowH+6,cw=(W-lw-10)/16;
+    var svg=el("svg",{"class":"ch",viewBox:"0 0 "+W+" "+H,role:"img","aria-label":"Diagrama de Gantt de seis fases en 16 semanas",style:"min-width:760px"},wrap);
+    for(var s=1;s<=16;s++){ var x=lw+(s-1)*cw; el("line",{x1:x,x2:x,y1:top-6,y2:H,"class":"gl"},svg); txt(svg,x+cw/2,14,"S"+s,"","middle"); }
+    F.forEach(function(f,i){
+      var y=top+i*rowH, g=el("g",{"class":"mk"},svg), x=lw+(f.a-1)*cw, w=(f.z-f.a+1)*cw-2;
+      txt(g,lw-12,y+rowH/2+4,f.k,"lab","end");
+      el("rect",{x:x+1,y:y+10,width:w,height:rowH-20,rx:4,fill:f.c},g);
+      f.h.forEach(function(h){ var hx=lw+(h[1]-1)*cw+cw/2, d=el("path",{d:"M"+hx+","+(y+8)+"l7,7l-7,7l-7,-7z",fill:"#fff",stroke:"#252423","stroke-width":1.6},g);
+        var ht=el("rect",{"class":"hit",x:hx-12,y:y,width:24,height:rowH},g);
+        ht.addEventListener("mousemove",function(e){ showTip(e,h[0]+" · semana "+h[1],h[2]); }); ht.addEventListener("mouseleave",hideTip); });
+      var hit=el("rect",{"class":"hit",x:0,y:y,width:lw,height:rowH},g);
+      hit.addEventListener("mousemove",function(e){ showTip(e,f.k,"Semanas "+f.a+" a "+f.z); }); hit.addEventListener("mouseleave",hideTip);
+    });
+    body.insertAdjacentHTML("beforeend",'<p class="note">Rombo = hito. Las fases encadenadas se traslapan una semana como máximo; el calendario no tiene holgura.</p>');
+  },
+  presupuesto:function(b){
+    var d=[{k:"Personal (320 h del equipo)",v:2668160,tip:"320 h × $8.338/h · equipo, en especie"},{k:"Salidas de campo (24 pasajes)",v:91680,c:C2,tip:"24 viajes × $3.820 · equipo, en efectivo"},{k:"Software y nube (plan gratuito)",v:0,tip:"Android Studio, Kotlin, GitHub, Google Forms, Firebase Spark"}];
+    var body=shell(b,"Presupuesto valorado por rubro (COP 2026)","Solo valores con soporte verificable",d.map(function(x){return [x.k,cop(x.v)];}).concat([["Pendientes de cotizar","Teléfonos, portátiles, asesoría, impresiones, norma ISO"]]),["Rubro","Valor"]);
+    hbars(body,d,{lw:210,fmt:cop,aria:"Personal 2.668.160, salidas de campo 91.680, software 0"});
+    body.insertAdjacentHTML("beforeend",'<p class="note">Total valorado: <b>'+cop(2759840)+'</b>. Hora calculada con el salario mínimo de 2026 (COP 1.750.905) entre 210 h al mes. Quedan pendientes los equipos, la asesoría, las impresiones y la norma ISO/IEC 7816-4.</p>');
+  },
+  pasajes:function(b){
+    var d=[{k:"Entrevistas (A3)",v:12,tip:"12 pasajes · "+cop(45840)},{k:"Piloto (A14–A15)",v:8,tip:"8 pasajes · "+cop(30560)},{k:"Visitas al aliado (A5)",v:4,tip:"4 pasajes · "+cop(15280)}];
+    var body=shell(b,"Pasajes de Metro por actividad","24 viajes, perfil frecuente, $3.820 c/u",d.map(function(x){return [x.k,x.v,cop(x.v*3820)];}),["Actividad","Pasajes","Valor"]);
+    d.forEach(function(x){x.s=cop(x.v*3820);});
+    hbars(body,d,{lw:160,color:C2,aria:"Entrevistas 12, piloto 8, visitas 4"});
+  }
+};
+document.querySelectorAll("[data-viz]").forEach(function(b){ V[b.getAttribute("data-viz")](b); });
+document.addEventListener("scroll",hideTip,true);
+
+var tabs=document.querySelectorAll("nav.tabs button");
+tabs.forEach(function(t){ t.addEventListener("click",function(){
+  tabs.forEach(function(x){ x.setAttribute("aria-selected",String(x===t)); });
+  document.querySelectorAll(".page").forEach(function(p){ p.classList.toggle("on",p.id===t.getAttribute("data-pg")); });
+  window.scrollTo(0,0); hideTip();
+}); });
+})();
+</script>
+</body>
+</html>
