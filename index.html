@@ -160,7 +160,7 @@ section.block{padding-block:clamp(80px,11vw,140px)}
 .row-main{display:grid;gap:6px;min-width:0;transition:transform .5s var(--ease)}
 .row button:hover .row-main{transform:translateX(18px)}
 .row-name{font-family:var(--f-display);font-size:clamp(2.1rem,5.4vw,4.2rem);line-height:1.02;letter-spacing:-.01em;display:flex;align-items:center;gap:.3em}
-.row-name img{width:.78em;height:.78em;border-radius:.2em;object-fit:cover;flex:none}
+.row-name img{width:.78em;height:.78em;border-radius:.2em;object-fit:cover;flex:none;box-shadow:0 6px 16px -6px rgba(0,0,0,.6)}
 .row-name img.round{border-radius:50%}
 .row-desc{color:var(--muted);font-size:var(--t-sm)}
 .row-meta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
@@ -668,7 +668,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         wins:["Works 100% offline once installed, even on low-cost phones.","49 interactive activities with audio: drag and drop, multiple choice, word building and matching.","Progress is saved on the phone and syncs when the connection comes back.","Role-based web panels in Flask and MySQL: admins manage activities, schools and users; teachers follow their group's progress and download Excel and PDF reports (110 automated tests)."],
         role:"I was part of the engineering team, which programmed the app logic, the database, the AI assistant and the syncing. The visual design was done by the Crosmedia team. On the role panels I work on the admin and teacher panels.",
         note:"Being rebuilt: I am improving the role panels (admin and teacher) and their connection to the app. The panels have their own entry in this portfolio."} },
-    { id:"paneles", status:"obra", logo:"media/numi-icon.png", numiBadge:true, linked:"numi", image:"media/paneles.webp", poster:"media/paneles.webp",
+    { id:"paneles", status:"obra", logo:"media/icons/paneles.webp", linked:"numi", image:"media/paneles.webp", poster:"media/paneles.webp",
       tools:[["python","Python"],["","Flask"],["mysql","MySQL"],["","Bootstrap"],["javascript","JavaScript"],["","pytest"],["github","GitHub"]],
       links:[{href:"https://github.com/luism7p7/numi-paneles-roles",es:"Ver el código de los paneles",en:"View the panels code",main:true}],
       flow:true,
@@ -691,7 +691,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         wins:["Activity builder: what is published reaches the child's phone on the next sync.","Teacher panel with progress by subject, streak, students who need attention and Excel and PDF reports.","A keyed bridge connects the panels with the app backend; progress uses the same table and the same rule: the highest progress wins.","Each role has its own sign-in, and only authorized institutional accounts can enter.","110 automated tests with pytest."],
         role:"I work on the admin and teacher panels: the Flask server that feeds every screen with real MySQL data, the connection with the app and the tests. The screen design is by the team.",
         note:"Being rebuilt: I am improving both panels and their connection to the app."} },
-    { id:"blackjack", status:"fin", logo:"", icon:"cards", pc:"232,140,140", video:"media/blackjack.mp4", poster:"media/blackjack.jpg",
+    { id:"blackjack", status:"fin", logo:"media/icons/blackjack.webp", video:"media/blackjack.mp4", poster:"media/blackjack.jpg",
       tools:[["javascript","JavaScript"],["html5","HTML"],["css3","CSS"],["python","Python"]],
       links:[{href:"https://luism7p7.github.io/BlackJack/Casino/public/",es:"Jugar en línea",en:"Play online",main:true},{href:"https://github.com/luism7p7/BlackJack",es:"Ver el código",en:"View code"}],
       es:{name:"BlackJack Royale",desc:"Casino en el navegador con juego en línea y banco de fichas",meta:["Equipo","Juego web"],
@@ -706,7 +706,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         wins:["Player-vs-computer and real-time multiplayer modes.","A bank to borrow chips.","Saves each player's chips in the browser."],
         role:"I was part of the team that built the game: the rules, the interface, the chip bank and the server for online play.",
         note:"The online version runs the player-vs-computer mode and the bank. Multiplayer needs the server running."} },
-    { id:"glampinghub", status:"vivo", logo:"", icon:"tent", pc:"168,213,191", video:"media/glampinghub.mp4", poster:"media/glampinghub.jpg",
+    { id:"glampinghub", status:"vivo", logo:"media/icons/glampinghub.webp", video:"media/glampinghub.mp4", poster:"media/glampinghub.jpg",
       tools:[["java","Java"],["spring","Spring Boot"],["mysql","MySQL"],["javascript","JavaScript"],["html5","HTML"],["css3","CSS"]],
       links:[{href:"https://glampinghub-mzyu.onrender.com",es:"Probar la app",en:"Try the app",main:true},{href:"https://github.com/luism7p7/glampinghub",es:"Ver el código",en:"View code"}],
       es:{name:"GlampingHub",desc:"Plataforma para encontrar y reservar cabañas y glampings",meta:["Individual","Plataforma web"],
@@ -721,7 +721,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         wins:["Real bookings: pick dates and guests, it works out the total and blocks dates that are already taken.","Accounts with encrypted passwords and a \"My bookings\" section to cancel.","An admin panel to confirm bookings and publish new places.","Live on the internet: a Java Spring Boot server on Render and a cloud MySQL database, with automated tests on GitHub."],
         role:"The whole project: the database, the Java server with Spring Boot, the web pages and putting it online.",
         note:"You can try it with the demo account (button on the page). It runs on a free plan, so the first visit can take up to a minute while the server wakes up."} },
-    { id:"vipy", status:"doc", logo:"", icon:"nfc", pc:"127,192,204", image:"media/vipy.svg", poster:"media/vipy.jpg",
+    { id:"vipy", status:"doc", logo:"media/icons/vipy.webp", image:"media/vipy.svg", poster:"media/vipy.jpg",
       tools:[["","NFC"],["","QR"],["","Android"],["python","Python"],["pandas","pandas"],["jupyter","Google Colab"],["powerbi","Power BI (datos)"],["scrum","Scrum"],["github","GitHub"]],
       kpis:[["73 %",{es:"pasó por un control manual al entrar",en:"went through a manual check at the door"}],["18 de 22",{es:"se ha ido de un lugar por la fila",en:"have left a place because of the line",v:"18 of 22"}],["4 de 22",{es:"tiene un Android con NFC confirmado",en:"have an Android phone with confirmed NFC",v:"4 of 22"}]],
       docs:[{kind:"pbi",doc:"dashboards/vipy.html",es:["Tablero interactivo","Tres páginas: el problema en la puerta, teléfonos y alternativas, plan y presupuesto. Pasa el cursor por las gráficas."],en:["Interactive dashboard","Three pages: the problem at the door, phones and alternatives, plan and budget. Hover over the charts."],t:{es:"Tablero · VIPY",en:"Dashboard · VIPY"}},
@@ -740,7 +740,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         wins:["Field research: a survey of 22 people (16 went through a manual check) and 3 interviews with door staff and managers.","A comparison of 13 alternatives and a gap defined by four conditions.","A preliminary architecture, 5 specific objectives and a 16-week plan using the DSRM methodology.","A schedule, a budget and a pilot planned with at least 15 users and 3 door staff."],
         role:"Researched and documented as a pair with Ronald García Muñoz: survey, interviews, state of the art, preliminary design and final document. Technical advisor: Rodolfo Ortega.",
         note:"In documentation: deliverables E1 to E8 are complete. The next stage is building the prototype."} },
-    { id:"ubicua", status:"fin", logo:"", icon:"chip", pc:"232,164,106", image:"media/ubicua.jpg", poster:"media/ubicua.jpg",
+    { id:"ubicua", status:"fin", logo:"media/icons/ubicua.webp", image:"media/ubicua.jpg", poster:"media/ubicua.jpg",
       tools:[["cplusplus","C++"],["","Arduino"],["","Tinkercad"],["git","Git"],["github","GitHub"]],
       links:[{href:"https://github.com/luism7p7/laboratorios-computacion-ubicua",es:"Ver el código",en:"View code",main:true},{href:"https://www.youtube.com/watch?v=429Tt-C3h7E",es:"Ver el video del proyecto final",en:"Watch the final project video"}],
       es:{name:"Laboratorios IoT",desc:"Arduino y C++: sensores, un robot móvil y control de acceso con RFID",meta:["Académico","Arduino"],
@@ -753,7 +753,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         what:"The labs from my Ubiquitous Computing course: Arduino circuits programmed in C++, from a blinking LED to a two-motor robot and an access control system with RFID cards.",
         wins:["Final project: an RFID reader checks the card and, if it is authorized, runs a motor for 5 seconds through a transistor with PWM.","A mobile robot with an H-bridge: it drives, turns and brakes, and only starts with an authorized card.","Distance, temperature and humidity sensors with readings on an LCD screen.","Non-blocking code with millis() and circuits simulated in Tinkercad."],
         role:"I built the circuits, wrote the C++ sketches and documented each lab in the repository."} },
-    { id:"analitica", status:"curso", logo:"", icon:"chart", pc:"196,181,240", image:"media/analitica.webp", poster:"media/analitica.webp",
+    { id:"analitica", status:"curso", logo:"media/icons/analitica.webp", image:"media/analitica.webp", poster:"media/analitica.webp",
       tools:[["python","Python"],["pandas","pandas"],["numpy","NumPy"],["matplotlib","Matplotlib"],["scikitlearn","scikit-learn"],["","SciPy"],["","TensorFlow"],["jupyter","Google Colab"]],
       repo:"luism7p7/analitica-de-datos-labs",
       kpis:[["23",{es:"laboratorios en Google Colab",en:"labs in Google Colab"}],["8",{es:"conjuntos de datos, de ventas a MNIST",en:"datasets, from retail sales to MNIST"}],["5",{es:"bloques: datos, correlación, probabilidad, regresión y ML",en:"blocks: data, correlation, probability, regression and ML"}]],
@@ -884,7 +884,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
       '<div><h4>'+u.tools+'</h4><div class="toolrow">'+p.tools.map(function(x){return '<span class="chip">'+(x[0]?'<i class="ic i-'+x[0]+'"></i>':'')+esc(x[1])+'</span>';}).join('')+'</div></div></div>';
     var extra='';
     if(p.linked){ var q=byId(p.linked); extra+='<button type="button" class="numi-link" data-open="'+q.id+'"><img src="'+q.logo+'" alt=""><span><b>'+u.numiT+'</b><small>'+u.numiS+'</small></span><span class="go">'+u.open+' →</span></button>'; }
-    if(p.related){ extra+='<button type="button" class="numi-link" data-open="'+p.related+'"><span class="pic-numi" style="width:38px;height:38px"><img src="media/numi-icon.png" alt="" style="border-radius:10px"><span class="pic">'+ICON.panel+'</span></span><span><b>'+u.pan+'</b><small>'+u.panS+'</small></span><span class="go">'+u.open+' →</span></button>'; }
+    if(p.related){ extra+='<button type="button" class="numi-link" data-open="'+p.related+'"><img src="'+byId(p.related).logo+'" alt=""><span><b>'+u.pan+'</b><small>'+u.panS+'</small></span><span class="go">'+u.open+' →</span></button>'; }
     if(p.flow){
       var nd=function(f,ic){ return '<div class="fnode">'+ic+'<b>'+esc(f[0])+'</b><small>'+esc(f[1])+'</small></div>'; };
       extra+='<div><h4 class="sec-t">'+u.flow+'</h4><div class="flow"><div class="flow-grid">'+nd(u.f1,'<img src="media/numi-icon.png" alt="">')+'<div class="flink" aria-hidden="true"></div>'+nd(u.f2,FIC.key)+'<div class="flink" aria-hidden="true"></div>'+
