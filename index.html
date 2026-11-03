@@ -340,6 +340,103 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
 .nb-frame{flex:1;min-height:0;position:relative;background:#fff}
 .nb-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
 .nb-load{position:absolute;inset:0;display:grid;place-items:center;color:#55605b;font-size:var(--t-sm)}
+/* project icons */
+.pic{--pc:168,213,191;display:inline-grid;place-items:center;flex:none;background:linear-gradient(145deg,rgba(var(--pc),.24),rgba(var(--pc),.07));border:1px solid rgba(var(--pc),.42);color:rgb(var(--pc))}
+.pic svg{width:58%;height:58%;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.row-name .pic{width:.78em;height:.78em;border-radius:.2em}
+.sheet-head .pic{width:54px;height:54px;border-radius:13px}
+.pic-numi{position:relative;display:inline-block;flex:none}
+.pic-numi img{display:block;width:100%;height:100%;object-fit:cover}
+.pic-numi .pic{position:absolute;right:-14%;bottom:-14%;width:58%!important;height:58%!important;border-radius:28%!important;background:#0B3B36;border:2px solid var(--bg);--pc:94,234,212}
+.row-name .pic-numi{width:.78em;height:.78em}.row-name .pic-numi img{border-radius:.2em}
+.sheet-head .pic-numi{width:54px;height:54px}.sheet-head .pic-numi img{border-radius:13px}
+/* row linked to Numi */
+.row.linked button{padding-left:clamp(30px,5vw,64px)}
+.row.linked button::after{content:"";position:absolute;left:clamp(8px,1.6vw,20px);top:-1px;height:calc(50% + 1px);width:clamp(14px,2.6vw,30px);border-left:1.5px dashed rgba(94,234,212,.55);border-bottom:1.5px dashed rgba(94,234,212,.55);border-bottom-left-radius:12px;pointer-events:none}
+.via{display:inline-flex;align-items:center;gap:7px;font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#5EEAD4}
+.via img{width:16px;height:16px;border-radius:4px}
+.row-main .via{margin-bottom:2px}
+/* new status: course in progress */
+.st-curso{--c:196,181,240}
+.st-curso i{width:12px;display:flex;gap:2px;align-items:flex-end;height:10px}
+.st-curso i b{width:2.5px;background:rgb(var(--c));border-radius:1px;animation:stBar 1.6s ease-in-out infinite}
+.st-curso i b:nth-child(1){height:40%}.st-curso i b:nth-child(2){height:100%;animation-delay:.2s}.st-curso i b:nth-child(3){height:65%;animation-delay:.4s}
+@keyframes stBar{0%,100%{transform:scaleY(.55);transform-origin:bottom}50%{transform:scaleY(1);transform-origin:bottom}}
+/* sheet extras */
+.sec-t{margin:0 0 12px;font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:500}
+.mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mini div{padding:16px 12px 16px 0}
+.mini div + div{padding-left:14px;border-left:1px solid var(--line)}
+.mini b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(1.7rem,4vw,2.3rem);line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.mini span{display:block;font-size:.8rem;color:var(--muted);margin-top:6px;line-height:1.35}
+.dbox{display:grid;gap:10px}
+.dcard{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 16px;border-radius:12px;border:1px solid var(--line2);background:var(--surface);transition:border-color .3s,background .3s;text-decoration:none;color:var(--fg)}
+.dcard:hover,.dcard:focus-visible{border-color:var(--accent);background:var(--raised)}
+.dcard .dic{width:44px;height:44px;border-radius:11px;display:grid;place-items:center}
+.dcard .dic svg{width:24px;height:24px}
+.dcard b{display:block;font-weight:500;font-size:var(--t-base)}
+.dcard small{display:block;color:var(--muted);font-size:var(--t-sm);line-height:1.4;margin-top:2px}
+.dcard .go{font-size:var(--t-sm);color:var(--muted);white-space:nowrap}
+.dic.pbi{background:#F2C811}
+.dic.colab{background:#fff}
+.dic.nb{background:var(--raised);border:1px solid var(--line2)}
+.dic.nb svg{stroke:var(--accent);fill:none;stroke-width:1.6}
+/* Numi connection diagram */
+.flow{border:1px solid rgba(94,234,212,.28);border-radius:14px;padding:18px;background:radial-gradient(500px 200px at 0 0,rgba(20,184,166,.12),transparent 70%),var(--surface)}
+.flow-grid{display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr) 54px minmax(0,1.15fr);align-items:center;gap:0}
+.fnode{border:1px solid rgba(94,234,212,.4);border-radius:12px;padding:12px;background:rgba(13,148,136,.1);text-align:center;min-width:0}
+.fnode img{width:30px;height:30px;border-radius:8px;display:block;margin:0 auto 8px}
+.fnode svg{width:26px;height:26px;stroke:#5EEAD4;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:block;margin:0 auto 8px}
+.fnode b{display:block;font-size:var(--t-sm);font-weight:600;color:var(--fg)}
+.fnode small{display:block;font-size:.74rem;color:var(--muted);line-height:1.35;margin-top:3px}
+.fstack{display:grid;gap:8px}
+.flink{position:relative;height:2px;margin:0 6px;background:repeating-linear-gradient(90deg,#5EEAD4 0 6px,transparent 6px 11px);background-size:22px 2px;animation:flowMove 1.2s linear infinite}
+.flink::before,.flink::after{content:"";position:absolute;top:-4px;width:0;height:0;border:5px solid transparent}
+.flink::after{right:-6px;border-left-color:#5EEAD4}.flink::before{left:-6px;border-right-color:#5EEAD4}
+@keyframes flowMove{to{background-position:22px 0}}
+.flow p{margin:14px 0 0;font-size:var(--t-sm);color:var(--muted);font-weight:300}
+@media (max-width:560px){.flow-grid{grid-template-columns:minmax(0,1fr);gap:0}.flink{width:2px;height:26px;margin:4px auto;background:repeating-linear-gradient(180deg,#5EEAD4 0 6px,transparent 6px 11px);animation:none}.flink::before,.flink::after{display:none}}
+.numi-link{all:unset;cursor:pointer;display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;border:1px solid rgba(94,234,212,.35);background:rgba(13,148,136,.08);color:var(--fg)}
+.numi-link:hover,.numi-link:focus-visible{border-color:#5EEAD4}
+.numi-link img{width:38px;height:38px;border-radius:10px}
+.numi-link b{display:block;font-weight:500}
+.numi-link small{display:block;color:var(--muted);font-size:var(--t-sm)}
+.numi-link .go{margin-left:auto;color:#5EEAD4;font-size:var(--t-sm);white-space:nowrap}
+/* screenshot gallery */
+.gal-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.gal-tabs button{all:unset;cursor:pointer;font-size:var(--t-sm);padding:8px 14px;border-radius:999px;border:1px solid var(--line2);color:var(--muted)}
+.gal-tabs button[aria-pressed="true"]{background:rgba(13,148,136,.16);border-color:#5EEAD4;color:var(--fg)}
+.gal-main{border-radius:12px;overflow:hidden;border:1px solid var(--line2);background:#F4F7F6;display:block}
+.gal-main .bar{height:24px;background:#E3E9E7;display:flex;align-items:center;gap:6px;padding:0 10px}
+.gal-main .bar i{width:8px;height:8px;border-radius:50%;background:#C2CCC8}
+.gal-main .bar span{margin-left:8px;font:500 11px/1 var(--f-mono);color:#5C6A65}
+.gal-main img{display:block;width:100%;height:auto}
+.gal-cap{margin:10px 0 0;font-size:var(--t-sm);color:var(--muted)}
+.gal-cap b{color:var(--fg);font-weight:500}
+.gal-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.gal-thumbs button{all:unset;cursor:pointer;border-radius:8px;overflow:hidden;border:1px solid var(--line2);opacity:.6;transition:opacity .25s,border-color .25s;aspect-ratio:16/8;background:#F4F7F6}
+.gal-thumbs button img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.gal-thumbs button[aria-current="true"],.gal-thumbs button:hover{opacity:1;border-color:#5EEAD4}
+/* course lab explorer */
+.labs{display:grid;gap:10px}
+.lgrp{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.lgrp summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 16px}
+.lgrp summary::-webkit-details-marker{display:none}
+.lgrp summary i{width:10px;height:10px;border-radius:3px;background:var(--c);flex:none}
+.lgrp summary b{font-weight:500}
+.lgrp summary span{margin-left:auto;font-size:var(--t-xs);color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.lgrp summary::after{content:"";width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);margin:-4px 2px 0 4px;transition:transform .3s}
+.lgrp[open] summary::after{transform:rotate(225deg);margin-top:4px}
+.lgrp ol{list-style:none;margin:0;padding:0 8px 8px;display:grid;gap:2px}
+.lgrp li a{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 8px;border-radius:8px;text-decoration:none;color:var(--fg)}
+.lgrp li a:hover,.lgrp li a:focus-visible{background:var(--raised)}
+.lgrp li .n{font:500 .78rem/1 var(--f-mono);color:var(--c)}
+.lgrp li .t{font-weight:300;font-size:var(--t-sm)}
+.lgrp li .t small{display:block;color:var(--dim);font-size:.76rem}
+.lgrp li .o{font-size:.76rem;color:var(--muted);white-space:nowrap}
+.lgrp li a:hover .o{color:var(--accent)}
+.data-more{margin-top:14px}
+.data-more .btn{margin-top:0}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -380,7 +477,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         </div>
       </div>
       <div class="facts">
-        <div class="fact"><b data-count="6">6</b><span data-i18n="f1">proyectos, 2 de ellos en línea hoy</span></div>
+        <div class="fact"><b data-count="8">8</b><span data-i18n="f1">proyectos, 2 de ellos en línea hoy</span></div>
         <div class="fact"><b>1</b><span data-i18n="f2">sitio web publicado y en uso</span></div>
         <div class="fact"><b>1,5</b><span data-i18n="f3">años de experiencia con clientes</span></div>
         <div class="fact"><b data-i18n="f4b">7.º</b><span data-i18n="f4">semestre de Ingeniería de Software</span></div>
@@ -416,7 +513,8 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
           <div class="toolrow">
             <span class="chip"><i class="ic i-python"></i>Python</span><span class="chip"><i class="ic i-pandas"></i>pandas</span><span class="chip"><i class="ic i-scikitlearn"></i>scikit-learn</span><span class="chip"><i class="ic i-jupyter"></i>Google Colab</span>
           </div>
-          <button type="button" class="btn solid" data-doc="notebooks/arbol-regresion-iris.html" data-doc-title="Notebook completo · Árbol de regresión con Iris"><span data-i18n="a-b">Ver el análisis completo</span><span class="arr" aria-hidden="true">→</span></button>
+          <div class="cta data-more"><button type="button" class="btn solid" data-doc="notebooks/arbol-regresion-iris.html" data-doc-title="Notebook completo · Árbol de regresión con Iris"><span data-i18n="a-b">Ver el análisis completo</span><span class="arr" aria-hidden="true">→</span></button>
+          <button type="button" class="btn" data-open="analitica"><span data-i18n="a-labs">Ver los 23 laboratorios del curso</span><span class="arr" aria-hidden="true">→</span></button></div>
         </div>
         <figure class="chart-card rv">
           <h3 data-i18n="c-h">Más complejo no siempre es mejor</h3>
@@ -555,7 +653,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         what:"The website of Casa Rendón, a family brand of coffee and artisan wine. It gives the business an online presence: it tells its story, shows its products and lets customers request a visit to the farm.",
         wins:["Published and running at casarendon.com.","Coffee and wine catalog, a gallery of real photos and an FAQ.","Visit requests go straight to the business WhatsApp.","Works on phones, tablets and computers."],
         role:"I built the site together with the team."} },
-    { id:"numi", status:"obra", logo:"media/numi-icon.png", video:"media/numi.mp4", poster:"media/numi.jpg", tall:true,
+    { id:"numi", status:"obra", logo:"media/numi-icon.png", related:"paneles", video:"media/numi.mp4", poster:"media/numi.jpg", tall:true,
       tools:[["flutter","Flutter"],["dart","Dart"],["sqlite","SQLite"],["firebase","Firebase"],["python","Python"],["mysql","MySQL"],["ai","IA"]],
       links:[{href:"https://github.com/luism7p7/numi-paneles-roles",es:"Ver los paneles de roles",en:"View the role panels",main:true},{href:"https://github.com/geminitodo5-sketch/app-educativa-medellin",es:"Ver el código de la app",en:"View the app code"}],
       es:{name:"Numi",desc:"App educativa para niños que funciona sin internet",meta:["Equipo","Android + web"],
@@ -563,14 +661,37 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         what:"Muchos niños de las zonas rurales de Medellín no tienen internet en casa. Numi es una app de celular con actividades de matemáticas, español, ciencias, sociales e inglés, y un asistente de inteligencia artificial que responde preguntas sin necesidad de conexión.",
         wins:["Funciona 100 % sin internet una vez instalada, incluso en celulares económicos.","49 actividades interactivas con audio: arrastrar, elegir, armar palabras y encontrar parejas.","El progreso se guarda en el celular y se sincroniza cuando vuelve la conexión.","Paneles web de roles en Flask y MySQL: el administrador gestiona actividades, instituciones y usuarios; el docente ve el avance de su grupo y descarga reportes en Excel y PDF (110 pruebas automáticas)."],
         role:"Formé parte del equipo de ingeniería, que programó la lógica de la app, la base de datos, el asistente de IA y la sincronización. El diseño visual lo hizo el equipo de Crosmedia. En los paneles de roles trabajo en el panel administrativo y el docente.",
-        note:"En reconstrucción: estoy mejorando los paneles de roles (administrador y docente) y su conexión con la app."},
+        note:"En reconstrucción: estoy mejorando los paneles de roles (administrador y docente) y su conexión con la app. Los paneles tienen su propia ficha en este portafolio."},
       en:{name:"Numi",desc:"Educational app for children that works without internet",meta:["Team","Android + web"],
         sub:"Children in grades 1 to 5 in rural Medellín",
         what:"Many children in rural Medellín have no internet at home. Numi is a phone app with math, Spanish, science, social studies and English activities, plus an AI assistant that answers questions without a connection.",
         wins:["Works 100% offline once installed, even on low-cost phones.","49 interactive activities with audio: drag and drop, multiple choice, word building and matching.","Progress is saved on the phone and syncs when the connection comes back.","Role-based web panels in Flask and MySQL: admins manage activities, schools and users; teachers follow their group's progress and download Excel and PDF reports (110 automated tests)."],
         role:"I was part of the engineering team, which programmed the app logic, the database, the AI assistant and the syncing. The visual design was done by the Crosmedia team. On the role panels I work on the admin and teacher panels.",
-        note:"Being rebuilt: I am improving the role panels (admin and teacher) and their connection to the app."} },
-    { id:"blackjack", status:"fin", logo:"", video:"media/blackjack.mp4", poster:"media/blackjack.jpg",
+        note:"Being rebuilt: I am improving the role panels (admin and teacher) and their connection to the app. The panels have their own entry in this portfolio."} },
+    { id:"paneles", status:"obra", logo:"media/numi-icon.png", numiBadge:true, linked:"numi", image:"media/paneles.webp", poster:"media/paneles.webp",
+      tools:[["python","Python"],["","Flask"],["mysql","MySQL"],["","Bootstrap"],["javascript","JavaScript"],["","pytest"],["github","GitHub"]],
+      links:[{href:"https://github.com/luism7p7/numi-paneles-roles",es:"Ver el código de los paneles",en:"View the panels code",main:true}],
+      flow:true,
+      gallery:[
+        {g:"admin",src:"media/paneles/admin-inicio.webp",url:"admin · /inicio",es:["Inicio del panel administrativo","Resumen de la red: instituciones, docentes, grupos y estudiantes, cobertura por comuna y lo que requiere acción."],en:["Admin home","Network overview: schools, teachers, groups and students, coverage by district and what needs action."]},
+        {g:"admin",src:"media/paneles/admin-constructor.webp",url:"admin · /constructor",es:["Constructor de actividades","Se arma la actividad en una sola vista con imágenes y audios; llega al celular en la próxima sincronización."],en:["Activity builder","Activities are built in one view with images and audio; they reach the phone on the next sync."]},
+        {g:"admin",src:"media/paneles/admin-login.webp",url:"admin · /index",es:["Acceso del administrador","Solo las cuentas institucionales con rol de administrador entran al panel."],en:["Admin sign-in","Only institutional accounts with the admin role can enter."]},
+        {g:"docente",src:"media/paneles/docente-panel.webp",url:"docente · /panel",es:["Panel del grupo","Activos de la semana, racha, avance por materia y estudiantes que requieren atención."],en:["Group dashboard","Weekly active students, streak, progress by subject and students who need attention."]},
+        {g:"docente",src:"media/paneles/docente-actividades.webp",url:"docente · /actividades",es:["Actividades del grupo","El docente activa o desactiva cada actividad para su grupo y ve en cuáles hay más errores."],en:["Group activities","Teachers turn each activity on or off for their group and see where students make more mistakes."]},
+        {g:"docente",src:"media/paneles/docente-login.webp",url:"docente · /index",es:["Acceso del docente","Con el correo institucional que entrega la coordinación de la sede."],en:["Teacher sign-in","With the institutional email given by the school coordinator."]}],
+      es:{name:"Paneles de Numi",desc:"Panel administrativo y panel docente conectados con la app",meta:["Equipo","Web · Flask"],
+        sub:"La parte web de Numi · administrador y docente",
+        what:"Numi tiene dos paneles web que trabajan con la app del celular. En el administrativo se gestiona el contenido: actividades, imágenes y audios, instituciones, grupos y usuarios, y se vigila qué celulares llevan días sin sincronizar. En el docente, cada profesor sigue el avance de su grupo por materia y decide qué actividades quedan activas.",
+        wins:["Constructor de actividades: lo que se publica llega al celular del niño en su próxima sincronización.","Panel docente con avance por materia, racha, estudiantes que requieren atención y reportes en Excel y PDF.","Un puente con clave conecta los paneles con el backend de la app; el progreso usa la misma tabla y la misma regla: gana el mayor avance.","Cada rol tiene su propio acceso, y solo las cuentas institucionales autorizadas entran.","110 pruebas automáticas con pytest."],
+        role:"Trabajo en el panel administrativo y el docente: el servidor en Flask que alimenta cada pantalla con datos reales de MySQL, la conexión con la app y las pruebas. El diseño de las pantallas es del equipo.",
+        note:"En reconstrucción: estoy mejorando los dos paneles y su conexión con la app."},
+      en:{name:"Numi Panels",desc:"Admin and teacher web panels connected to the app",meta:["Team","Web · Flask"],
+        sub:"The web side of Numi · admin and teacher",
+        what:"Numi has two web panels that work with the phone app. The admin panel manages the content: activities, images and audio, schools, groups and users, and it tracks which phones have not synced for days. In the teacher panel, each teacher follows their group's progress by subject and decides which activities stay active.",
+        wins:["Activity builder: what is published reaches the child's phone on the next sync.","Teacher panel with progress by subject, streak, students who need attention and Excel and PDF reports.","A keyed bridge connects the panels with the app backend; progress uses the same table and the same rule: the highest progress wins.","Each role has its own sign-in, and only authorized institutional accounts can enter.","110 automated tests with pytest."],
+        role:"I work on the admin and teacher panels: the Flask server that feeds every screen with real MySQL data, the connection with the app and the tests. The screen design is by the team.",
+        note:"Being rebuilt: I am improving both panels and their connection to the app."} },
+    { id:"blackjack", status:"fin", logo:"", icon:"cards", pc:"232,140,140", video:"media/blackjack.mp4", poster:"media/blackjack.jpg",
       tools:[["javascript","JavaScript"],["html5","HTML"],["css3","CSS"],["python","Python"]],
       links:[{href:"https://luism7p7.github.io/BlackJack/Casino/public/",es:"Jugar en línea",en:"Play online",main:true},{href:"https://github.com/luism7p7/BlackJack",es:"Ver el código",en:"View code"}],
       es:{name:"BlackJack Royale",desc:"Casino en el navegador con juego en línea y banco de fichas",meta:["Equipo","Juego web"],
@@ -585,7 +706,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         wins:["Player-vs-computer and real-time multiplayer modes.","A bank to borrow chips.","Saves each player's chips in the browser."],
         role:"I was part of the team that built the game: the rules, the interface, the chip bank and the server for online play.",
         note:"The online version runs the player-vs-computer mode and the bank. Multiplayer needs the server running."} },
-    { id:"glampinghub", status:"vivo", logo:"", video:"media/glampinghub.mp4", poster:"media/glampinghub.jpg",
+    { id:"glampinghub", status:"vivo", logo:"", icon:"tent", pc:"168,213,191", video:"media/glampinghub.mp4", poster:"media/glampinghub.jpg",
       tools:[["java","Java"],["spring","Spring Boot"],["mysql","MySQL"],["javascript","JavaScript"],["html5","HTML"],["css3","CSS"]],
       links:[{href:"https://glampinghub-mzyu.onrender.com",es:"Probar la app",en:"Try the app",main:true},{href:"https://github.com/luism7p7/glampinghub",es:"Ver el código",en:"View code"}],
       es:{name:"GlampingHub",desc:"Plataforma para encontrar y reservar cabañas y glampings",meta:["Individual","Plataforma web"],
@@ -600,8 +721,12 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         wins:["Real bookings: pick dates and guests, it works out the total and blocks dates that are already taken.","Accounts with encrypted passwords and a \"My bookings\" section to cancel.","An admin panel to confirm bookings and publish new places.","Live on the internet: a Java Spring Boot server on Render and a cloud MySQL database, with automated tests on GitHub."],
         role:"The whole project: the database, the Java server with Spring Boot, the web pages and putting it online.",
         note:"You can try it with the demo account (button on the page). It runs on a free plan, so the first visit can take up to a minute while the server wakes up."} },
-    { id:"vipy", status:"doc", logo:"", image:"media/vipy.svg", poster:"media/vipy.jpg",
-      tools:[["","NFC"],["","QR"],["","Android"],["scrum","Scrum"],["github","GitHub"]],
+    { id:"vipy", status:"doc", logo:"", icon:"nfc", pc:"127,192,204", image:"media/vipy.svg", poster:"media/vipy.jpg",
+      tools:[["","NFC"],["","QR"],["","Android"],["python","Python"],["pandas","pandas"],["jupyter","Google Colab"],["powerbi","Power BI (datos)"],["scrum","Scrum"],["github","GitHub"]],
+      kpis:[["73 %",{es:"pasó por un control manual al entrar",en:"went through a manual check at the door"}],["18 de 22",{es:"se ha ido de un lugar por la fila",en:"have left a place because of the line",v:"18 of 22"}],["4 de 22",{es:"tiene un Android con NFC confirmado",en:"have an Android phone with confirmed NFC",v:"4 of 22"}]],
+      docs:[{kind:"pbi",doc:"dashboards/vipy.html",es:["Tablero interactivo","Tres páginas: el problema en la puerta, teléfonos y alternativas, plan y presupuesto. Pasa el cursor por las gráficas."],en:["Interactive dashboard","Three pages: the problem at the door, phones and alternatives, plan and budget. Hover over the charts."],t:{es:"Tablero · VIPY",en:"Dashboard · VIPY"}},
+            {kind:"colab",href:"https://colab.research.google.com/github/luism7p7/vipy-anteproyecto/blob/main/analisis/vipy_analisis.ipynb",es:["Espacio de trabajo en Google Colab","El cuaderno con el análisis en Python: se abre y se ejecuta en el navegador, y genera los CSV del tablero."],en:["Google Colab workspace","The Python analysis notebook: it opens and runs in the browser and produces the dashboard CSV files."]},
+            {kind:"nb",href:"https://github.com/luism7p7/vipy-anteproyecto/blob/main/analisis/vipy_analisis.ipynb",es:["Ver el análisis completo","El cuaderno ya ejecutado en GitHub, con gráficas, intervalos de confianza y conclusiones."],en:["See the full analysis","The executed notebook on GitHub, with charts, confidence intervals and conclusions."]}],
       links:[{href:"https://github.com/luism7p7/vipy-anteproyecto",es:"Ver el anteproyecto",en:"View the proposal",main:true},{href:"https://github.com/luism7p7/vipy-anteproyecto/blob/main/docs/E8-documento-final-anteproyecto.pdf",es:"Documento final (PDF)",en:"Final document (PDF)"}],
       es:{name:"VIPY",desc:"Control de acceso a eventos con credenciales digitales por NFC y QR",meta:["Equipo","Investigación"],
         sub:"Anteproyecto · Ingeniería de Software, Universidad Cooperativa de Colombia · 2026",
@@ -615,7 +740,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         wins:["Field research: a survey of 22 people (16 went through a manual check) and 3 interviews with door staff and managers.","A comparison of 13 alternatives and a gap defined by four conditions.","A preliminary architecture, 5 specific objectives and a 16-week plan using the DSRM methodology.","A schedule, a budget and a pilot planned with at least 15 users and 3 door staff."],
         role:"Researched and documented as a pair with Ronald García Muñoz: survey, interviews, state of the art, preliminary design and final document. Technical advisor: Rodolfo Ortega.",
         note:"In documentation: deliverables E1 to E8 are complete. The next stage is building the prototype."} },
-    { id:"ubicua", status:"fin", logo:"", image:"media/ubicua.jpg", poster:"media/ubicua.jpg",
+    { id:"ubicua", status:"fin", logo:"", icon:"chip", pc:"232,164,106", image:"media/ubicua.jpg", poster:"media/ubicua.jpg",
       tools:[["cplusplus","C++"],["","Arduino"],["","Tinkercad"],["git","Git"],["github","GitHub"]],
       links:[{href:"https://github.com/luism7p7/laboratorios-computacion-ubicua",es:"Ver el código",en:"View code",main:true},{href:"https://www.youtube.com/watch?v=429Tt-C3h7E",es:"Ver el video del proyecto final",en:"Watch the final project video"}],
       es:{name:"Laboratorios IoT",desc:"Arduino y C++: sensores, un robot móvil y control de acceso con RFID",meta:["Académico","Arduino"],
@@ -627,9 +752,52 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         sub:"Ubiquitous Computing · Software Engineering",
         what:"The labs from my Ubiquitous Computing course: Arduino circuits programmed in C++, from a blinking LED to a two-motor robot and an access control system with RFID cards.",
         wins:["Final project: an RFID reader checks the card and, if it is authorized, runs a motor for 5 seconds through a transistor with PWM.","A mobile robot with an H-bridge: it drives, turns and brakes, and only starts with an authorized card.","Distance, temperature and humidity sensors with readings on an LCD screen.","Non-blocking code with millis() and circuits simulated in Tinkercad."],
-        role:"I built the circuits, wrote the C++ sketches and documented each lab in the repository."} }
+        role:"I built the circuits, wrote the C++ sketches and documented each lab in the repository."} },
+    { id:"analitica", status:"curso", logo:"", icon:"chart", pc:"196,181,240", image:"media/analitica.webp", poster:"media/analitica.webp",
+      tools:[["python","Python"],["pandas","pandas"],["numpy","NumPy"],["matplotlib","Matplotlib"],["scikitlearn","scikit-learn"],["","SciPy"],["","TensorFlow"],["jupyter","Google Colab"]],
+      repo:"luism7p7/analitica-de-datos-labs",
+      kpis:[["23",{es:"laboratorios en Google Colab",en:"labs in Google Colab"}],["8",{es:"conjuntos de datos, de ventas a MNIST",en:"datasets, from retail sales to MNIST"}],["5",{es:"bloques: datos, correlación, probabilidad, regresión y ML",en:"blocks: data, correlation, probability, regression and ML"}]],
+      labgroups:[
+        {c:"#A8D5BF",es:"Datos: calidad, preparación y EDA",en:"Data: quality, preparation and EDA",labs:[["1", "Inspección inicial y comprensión del dataset", "Laboratorio_1_%E2%80%94_Inspecci%C3%B3n_inicial_y_comprensi%C3%B3n_del_dataset.ipynb", "Ventas · Andina Retail"], ["2", "Evaluación de la calidad de los datos", "Lab02_Calidad_Datos.ipynb", "Ventas · Andina Retail"], ["3", "Preparación de los datos", "Lab03_Preparacion_Datos_Curso.ipynb", "Ventas · Andina Retail"], ["4", "Análisis exploratorio (EDA)", "Lab04_EDA_Inicial_Curso.ipynb", "Ventas · Andina Retail"], ["5", "Descripción estadística de una variable", "Lab05_Descripcion_Estadistica__Curso.ipynb", "Ventas · Andina Retail"], ["6", "Detección de valores atípicos", "Lab06_Valores_Atipicos_Curso.ipynb", "Ventas · Andina Retail"]]},
+        {c:"#7FC0CC",es:"Relaciones y correlación",en:"Relationships and correlation",labs:[["7", "Exploración de relaciones y patrones", "Clase_3/Lab_7_Exploracion_de_Relaciones_y_Patrones_Curso.ipynb", "Auto MPG"], ["7.1", "Análisis visual y cuantitativo de correlaciones", "Clase_3/Lab_7_1_Analisis_Visual_y_Cuantitativo_de_Correlaciones_Curso.ipynb", "Auto MPG"], ["8", "Pearson frente a Spearman", "Clase_3/Lab08_%E2%80%94_Comparaci%C3%B3n_de_correlaciones_Pearson_y_Spearman_Curso.ipynb", "Auto MPG"], ["9", "Significancia de una correlación", "Clase_3/Lab09_%E2%80%94_Significancia_estad%C3%ADstica_de_una_correlaci%C3%B3n_Curso.ipynb", "Auto MPG"]]},
+        {c:"#E3D3B4",es:"Probabilidad e inferencia",en:"Probability and inference",labs:[["10", "Distribuciones de probabilidad", "Clase_4/Lab_10_Exploracion_Distribuciones_Probabilidad_Curso.ipynb", "Datos simulados"], ["11", "Distribución normal y puntuación Z", "Clase_4/Lab_11_Distribucion_Normal_Z_Score_Curso.ipynb", "Datos simulados"], ["12", "Intervalo de confianza del 95 %", "Clase_5/Lab12/Lab12_Intervalos_de_Confianza.ipynb", "Datos simulados"]]},
+        {c:"#E8A46A",es:"Regresión y ANOVA",en:"Regression and ANOVA",labs:[["13", "Regresión lineal simple", "Clase_5/Lab13/Lab13_Regresion_Lineal_Simple.ipynb", "Advertising"], ["14", "Regresión lineal múltiple", "Clase_5/Lab14/Lab14_Regresion_Lineal_Multiple.ipynb", "Advertising"], ["15", "ANOVA", "Clase6/Lab15_ANOVA_Iris.ipynb", "Iris"], ["16", "Regresión logística", "Clase6/Lab16_Regresion_Logistica_Iris.ipynb", "Iris"]]},
+        {c:"#C4B5F0",es:"Machine learning",en:"Machine learning",labs:[["17", "Árbol de decisión", "Clase8/Lab17_Arbol_decision_Iris.ipynb", "Iris"], ["18", "Validación cruzada", "Clase8/Lab18_Validacion_cruzada_Iris.ipynb", "Iris"], ["19", "Agrupamiento con k-means", "Clase_09/Lab19_KMeans_Iris.ipynb", "Iris"], ["20", "Reglas de asociación (Apriori)", "Clase_10/Lab20_Reglas_asociaci%C3%B3n.ipynb", "Compras de ejemplo"], ["21", "Series de tiempo", "Clase_10/Lab21_Series_de_Tiempo.ipynb", "Datos simulados"], ["22", "Selección de variables con Random Forest", "Clase11_/Lab22_Seleccion_Variables_Random_Forest.ipynb", "Diabetes"], ["23", "Redes neuronales", "Clase11_/Lab23_MNIST_Redes_Neuronales.ipynb", "MNIST"]]}],
+      links:[{href:"https://github.com/luism7p7/analitica-de-datos-labs",es:"Ver mi copia del repositorio",en:"View my copy of the repository",main:true},{href:"https://github.com/LuisGomez-Meneses/Anal-tica-de-datos-labs",es:"Repositorio original del docente",en:"Instructor's original repository"}],
+      es:{name:"Analítica de Datos",desc:"23 laboratorios del curso: del dato crudo al modelo de machine learning",meta:["Académico","Google Colab"],
+        sub:"Laboratorios del curso · Ingeniería de Software, Universidad Cooperativa de Colombia · 2026",
+        what:"El recorrido completo de la materia Analítica de Datos en cuadernos de Google Colab. Empieza con un caso de ventas (Andina Retail) para revisar la calidad, preparar y explorar los datos, y avanza por correlación, probabilidad, intervalos de confianza y regresión hasta árboles de decisión, k-means, reglas de asociación, series de tiempo, Random Forest y redes neuronales.",
+        wins:["Calidad y preparación de datos reales de ventas: faltantes, duplicados, tipos y valores atípicos.","Estadística aplicada: correlación de Pearson y Spearman, significancia, distribución normal, puntuación Z e intervalos de confianza.","Modelos de regresión lineal simple y múltiple, ANOVA y regresión logística.","Machine learning: árboles con validación cruzada, k-means, Apriori, series de tiempo, selección de variables con Random Forest y una red neuronal con MNIST."],
+        role:"Desarrollo los laboratorios en Google Colab a medida que avanza el curso. Las guías son del docente Luis Miguel Gómez Meneses; aquí está mi copia del repositorio. Mi análisis propio del árbol de regresión con Iris está en la sección Datos.",
+        note:"En curso: el repositorio crece cada semana con los laboratorios de la clase."},
+      en:{name:"Data Analytics",desc:"23 course labs: from raw data to machine learning models",meta:["Academic","Google Colab"],
+        sub:"Course labs · Software Engineering, Universidad Cooperativa de Colombia · 2026",
+        what:"The full path of my Data Analytics course in Google Colab notebooks. It starts with a retail sales case (Andina Retail) to check quality, prepare and explore the data, and moves through correlation, probability, confidence intervals and regression to decision trees, k-means, association rules, time series, Random Forest and neural networks.",
+        wins:["Quality and preparation of real sales data: missing values, duplicates, types and outliers.","Applied statistics: Pearson and Spearman correlation, significance, the normal distribution, Z-scores and confidence intervals.","Simple and multiple linear regression, ANOVA and logistic regression.","Machine learning: trees with cross-validation, k-means, Apriori, time series, feature selection with Random Forest and a neural network on MNIST."],
+        role:"I work through the labs in Google Colab as the course goes on. The lab guides are by the instructor, Luis Miguel Gómez Meneses; this is my copy of the repository. My own regression tree analysis with Iris is in the Data section.",
+        note:"Ongoing: the repository grows every week with the class labs."} }
   ];
-  var UI = { es:{what:"Qué es",wins:"Lo que logra",role:"Mi parte",tools:"Herramientas",label:"Proyecto",close:"Cerrar"}, en:{what:"What it is",wins:"What it does",role:"My part",tools:"Tools",label:"Project",close:"Close"} };
+  var UI = { es:{what:"Qué es",wins:"Lo que logra",role:"Mi parte",tools:"Herramientas",label:"Proyecto",close:"Cerrar",data:"Datos y análisis",flow:"Cómo se conecta con la app",shots:"Las pantallas",admin:"Panel administrativo",docente:"Panel docente",via:"Parte de Numi",numiT:"Numi, la app del celular",numiS:"Ver la ficha de la app educativa",open:"Abrir",colab:"Abrir en Colab",labsT:"Los laboratorios",pan:"Paneles administrativo y docente",panS:"Ver la ficha de los paneles web de Numi",
+     f1:["App Numi","Celular del niño, sin internet"],f2:["Puente con clave","/api/app/v1 · sincroniza el progreso"],f3:["Panel administrativo","Contenido, instituciones y usuarios"],f4:["Panel docente","Avance del grupo y reportes"],fp:"La app guarda el avance en el celular y lo envía cuando hay conexión. Los dos paneles leen y escriben en la misma base MySQL, así que lo que publica el administrador llega a la app y lo que hace el niño lo ve su docente."},
+   en:{what:"What it is",wins:"What it does",role:"My part",tools:"Tools",label:"Project",close:"Close",data:"Data and analysis",flow:"How it connects with the app",shots:"The screens",admin:"Admin panel",docente:"Teacher panel",via:"Part of Numi",numiT:"Numi, the phone app",numiS:"See the educational app entry",open:"Open",colab:"Open in Colab",labsT:"The labs",pan:"Admin and teacher panels",panS:"See the entry for Numi's web panels",
+     f1:["Numi app","The child's phone, offline"],f2:["Keyed bridge","/api/app/v1 · syncs progress"],f3:["Admin panel","Content, schools and users"],f4:["Teacher panel","Group progress and reports"],fp:"The app saves progress on the phone and sends it when there is a connection. Both panels read and write the same MySQL database, so what the admin publishes reaches the app and what the child does is seen by their teacher."} };
+  var ICON={
+    cards:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3.5" width="12" height="17" rx="2.2" transform="rotate(8 13 12)"/><path d="M5.2 6.3 4.3 17.8c-.1 1.2.8 2.2 2 2.3l2.2.2"/><path d="M13.4 8.6c-1.4 1.5-2.9 2.4-2.9 3.8a1.5 1.5 0 0 0 2.6 1c-.1.9-.4 1.6-.8 2.1h2.1c-.4-.6-.7-1.3-.8-2.2a1.5 1.5 0 0 0 2.7-.8c0-1.4-1.5-2.4-2.9-3.9z" fill="currentColor" stroke="none" transform="rotate(8 13 12)"/></svg>',
+    tent:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 20.5h19"/><path d="M11.5 5.5 3.8 20.5"/><path d="M11.5 5.5l7.7 15"/><path d="M11.5 13.2 8.6 20.5M11.5 13.2l2.9 7.3"/><path d="M10.4 3.6l1.1 1.9 1.1-1.9"/><path d="M19.6 3.4a2.1 2.1 0 1 0 1.9 3.1 1.7 1.7 0 0 1-1.9-3.1z"/></svg>',
+    nfc:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="2.8" width="10.5" height="18.4" rx="2.2"/><path d="M7.6 18h2.3"/><path d="M6.4 10.6l1.8 1.8 3.3-3.6"/><path d="M16.8 9.2a4 4 0 0 1 0 5.6"/><path d="M19.4 6.6a7.6 7.6 0 0 1 0 10.8"/></svg>',
+    chip:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" rx="1.8"/><rect x="9.8" y="9.8" width="4.4" height="4.4" rx=".6"/><path d="M9.5 6.5V3.5M14.5 6.5V3.5M9.5 20.5v-3M14.5 20.5v-3M6.5 9.5h-3M6.5 14.5h-3M20.5 9.5h-3M20.5 14.5h-3"/></svg>',
+    chart:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 3.5v17h17"/><path d="M7 16.5l3.6-4.3 3 2.4 5.4-7"/><circle cx="7" cy="16.5" r="1.1" fill="currentColor"/><circle cx="10.6" cy="12.2" r="1.1" fill="currentColor"/><circle cx="13.6" cy="14.6" r="1.1" fill="currentColor"/><circle cx="19" cy="7.6" r="1.1" fill="currentColor"/></svg>',
+    panel:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7.5" height="9" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="5" rx="1.6"/><rect x="13.5" y="11" width="7.5" height="10" rx="1.6"/><rect x="3" y="15" width="7.5" height="6" rx="1.6"/></svg>'
+  };
+  var DICON={
+    pbi:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="13" y="3" width="5" height="18" rx="1.3" fill="#252423"/><rect x="8.5" y="8" width="5" height="13" rx="1.3" fill="#252423" fill-opacity=".72"/><rect x="4" y="12.5" width="5" height="8.5" rx="1.3" fill="#252423" fill-opacity=".48"/></svg>',
+    colab:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6 8.2a4.6 4.6 0 1 0 0 7.6" fill="none" stroke="#E8710A" stroke-width="2.6" stroke-linecap="round"/><path d="M14.4 8.2a4.6 4.6 0 1 1 0 7.6" fill="none" stroke="#F9AB00" stroke-width="2.6" stroke-linecap="round"/></svg>',
+    nb:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v3h3"/><path d="M9 16l2-3 2 1.5 2.5-4"/></svg>'
+  };
+  var FIC={
+    db:'<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg>',
+    key:'<svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="3.5"/><path d="M11.5 12H21M18 12v3M15.5 12v2"/></svg>'
+  };
   var EN = {
     n1:"Projects",n2:"Data",n3:"Tools",n4:"About",n5:"Contact",
     "h-l":"Software Engineering · Medellín","h-a":"Eligible for an internship · available from November 2026",
@@ -640,7 +808,7 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
     "d-l":"Data analytics","d-h":"From data <em>to decisions</em>","d-p":"Analyses built in Google Colab for my Data Analytics course, explained without jargon.",
     "a-q":"Can you predict the size of a flower from its other measurements?",
     "a-p":"Using 150 real flowers from the Iris dataset, I trained a <b>machine learning</b> model that estimates petal length from the other three measurements. Then I tested it on flowers it had never seen.",
-    k1:"average error",k2:"of the variation explained",k3:"more accurate than guessing","a-b":"See the full analysis",
+    "a-labs":"See the 23 course labs",k1:"average error",k2:"of the variation explained",k3:"more accurate than guessing","a-b":"See the full analysis",
     "c-h":"More complex is not always better","c-x5":"no limit","c-x":"model complexity →","c-y":"average error (cm)","c-pick":"chosen: 0.26 cm","c-mem":"memorizes",
     lg1:"On new flowers",lg2:"On flowers it already knew","c-cap":"A model that is too complex memorizes what it has seen and fails on new data. I chose the point where the error on new data is lowest.",
     "t-l":"Tools","t-h":"What I use <em>to build</em>","t-p":"Grouped by what they are for, so they make sense without a programming background.",
@@ -657,17 +825,24 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
   var ARROW='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
   function byId(id){ for(var i=0;i<P.length;i++) if(P[i].id===id) return P[i]; return null; }
-  var ST={vivo:{es:"En línea",en:"Live"},fin:{es:"Terminado",en:"Completed"},obra:{es:"En reconstrucción",en:"Being rebuilt"},doc:{es:"En documentación",en:"In documentation"}};
-  function stHtml(p){ var k=p.status; if(!k) return ''; return '<span class="st st-'+k+'"><i aria-hidden="true">'+(k==="doc"?'<b></b><b></b><b></b>':'')+'</i>'+esc(ST[k][lang])+'</span>'; }
+  var ST={vivo:{es:"En línea",en:"Live"},fin:{es:"Terminado",en:"Completed"},obra:{es:"En reconstrucción",en:"Being rebuilt"},doc:{es:"En documentación",en:"In documentation"},curso:{es:"En curso",en:"Ongoing"}};
+  function stHtml(p){ var k=p.status; if(!k) return ''; return '<span class="st st-'+k+'"><i aria-hidden="true">'+((k==="doc"||k==="curso")?'<b></b><b></b><b></b>':'')+'</i>'+esc(ST[k][lang])+'</span>'; }
+  function logoHtml(p){
+    if(p.logo && p.numiBadge) return '<span class="pic-numi"><img src="'+p.logo+'" alt=""><span class="pic">'+ICON.panel+'</span></span>';
+    if(p.logo) return '<img src="'+p.logo+'" alt=""'+(p.round?' class="round"':'')+'>';
+    if(p.icon) return '<span class="pic" style="--pc:'+(p.pc||"168,213,191")+'">'+ICON[p.icon]+'</span>';
+    return '';
+  }
   function metaHtml(t,cls){ return t.meta.map(function(m,i){ return '<span class="'+cls+(t.live&&i===1?' live':'')+'">'+esc(m)+'</span>'; }).join(''); }
 
   /* project index */
   var index=document.getElementById("index");
   function renderIndex(){
     index.innerHTML = P.map(function(p){
-      var t=p[lang], logo = p.logo ? '<img src="'+p.logo+'" alt=""'+(p.round?' class="round"':'')+'>' : '';
-      return '<li class="row rv"><button type="button" data-id="'+p.id+'" aria-haspopup="dialog">'+
-        '<span class="row-main"><span class="row-name">'+logo+esc(t.name)+'</span><span class="row-desc">'+esc(t.desc)+'</span></span>'+
+      var t=p[lang], logo = logoHtml(p);
+      var via = p.linked ? '<span class="via"><img src="media/numi-icon.png" alt="">'+UI[lang].via+'</span>' : '';
+      return '<li class="row rv'+(p.linked?' linked':'')+'"><button type="button" data-id="'+p.id+'" aria-haspopup="dialog">'+
+        '<span class="row-main">'+via+'<span class="row-name">'+logo+esc(t.name)+'</span><span class="row-desc">'+esc(t.desc)+'</span></span>'+
         '<span class="row-thumb"><img src="'+p.poster+'" alt="" loading="lazy"></span>'+
         '<span class="row-meta">'+stHtml(p)+metaHtml(t,'m')+'<span class="row-go">'+ARROW+'</span></span></button></li>';
     }).join('');
@@ -700,15 +875,57 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   function fillSheet(p){
     var t=p[lang], u=UI[lang];
     var media='<div class="sheet-media'+(p.tall?' tall':'')+'">'+(p.video?'<video src="'+p.video+'" poster="'+p.poster+'" controls muted loop playsinline'+(reduce?'':' autoplay')+'></video>':'<img src="'+p.image+'" alt="'+esc(t.name)+'">')+'</div>';
-    var head='<div class="sheet-head">'+(p.logo?'<img src="'+p.logo+'" alt=""'+(p.round?' class="round"':'')+'>':'')+'<div><h3 id="sh-title">'+esc(t.name)+'</h3><p>'+esc(t.sub)+'</p></div></div>';
+    var head='<div class="sheet-head">'+logoHtml(p)+'<div><h3 id="sh-title">'+esc(t.name)+'</h3><p>'+esc(t.sub)+'</p></div></div>';
     var tags='<div class="tags">'+stHtml(p)+metaHtml(t,'tag')+'</div>';
     var links=p.links.length?'<div class="cta">'+p.links.map(function(l){ return '<a class="btn'+(l.main?' solid':'')+'" href="'+l.href+'" target="_blank" rel="noopener">'+esc(l[lang])+' <span class="arr" aria-hidden="true">↗</span></a>'; }).join('')+'</div>':'';
     var kv='<div class="kv"><div><h4>'+u.what+'</h4><p>'+esc(t.what)+'</p></div>'+
       '<div><h4>'+u.wins+'</h4><ul>'+t.wins.map(function(w){return '<li>'+esc(w)+'</li>';}).join('')+'</ul></div>'+
       '<div><h4>'+u.role+'</h4><p>'+esc(t.role)+'</p></div>'+(t.note?'<p class="note">'+esc(t.note)+'</p>':'')+
       '<div><h4>'+u.tools+'</h4><div class="toolrow">'+p.tools.map(function(x){return '<span class="chip">'+(x[0]?'<i class="ic i-'+x[0]+'"></i>':'')+esc(x[1])+'</span>';}).join('')+'</div></div></div>';
+    var extra='';
+    if(p.linked){ var q=byId(p.linked); extra+='<button type="button" class="numi-link" data-open="'+q.id+'"><img src="'+q.logo+'" alt=""><span><b>'+u.numiT+'</b><small>'+u.numiS+'</small></span><span class="go">'+u.open+' →</span></button>'; }
+    if(p.related){ extra+='<button type="button" class="numi-link" data-open="'+p.related+'"><span class="pic-numi" style="width:38px;height:38px"><img src="media/numi-icon.png" alt="" style="border-radius:10px"><span class="pic">'+ICON.panel+'</span></span><span><b>'+u.pan+'</b><small>'+u.panS+'</small></span><span class="go">'+u.open+' →</span></button>'; }
+    if(p.flow){
+      var nd=function(f,ic){ return '<div class="fnode">'+ic+'<b>'+esc(f[0])+'</b><small>'+esc(f[1])+'</small></div>'; };
+      extra+='<div><h4 class="sec-t">'+u.flow+'</h4><div class="flow"><div class="flow-grid">'+nd(u.f1,'<img src="media/numi-icon.png" alt="">')+'<div class="flink" aria-hidden="true"></div>'+nd(u.f2,FIC.key)+'<div class="flink" aria-hidden="true"></div>'+
+        '<div class="fstack">'+nd(u.f3,ICON.panel.replace('<svg ','<svg '))+nd(u.f4,ICON.chart)+'</div></div><p>'+esc(u.fp)+'</p></div></div>';
+    }
+    if(p.gallery){
+      var gs=function(g){ return p.gallery.filter(function(x){return x.g===g;}); };
+      extra+='<div class="gal" data-gal><h4 class="sec-t">'+u.shots+'</h4><div class="gal-tabs" role="group">'+
+        ['admin','docente'].map(function(g,i){ return '<button type="button" data-g="'+g+'" aria-pressed="'+(i===0)+'">'+u[g]+'</button>'; }).join('')+'</div>'+
+        '<a class="gal-main" href="'+p.gallery[0].src+'" target="_blank" rel="noopener"><div class="bar"><i></i><i></i><i></i><span></span></div><img alt="" loading="lazy"></a><p class="gal-cap"></p><div class="gal-thumbs"></div></div>';
+    }
+    if(p.kpis){ extra+='<div class="mini">'+p.kpis.map(function(k){ return '<div><b>'+esc(lang==="en"&&k[1].v?k[1].v:k[0])+'</b><span>'+esc(k[1][lang])+'</span></div>'; }).join('')+'</div>'; }
+    if(p.docs){
+      extra+='<div><h4 class="sec-t">'+u.data+'</h4><div class="dbox">'+p.docs.map(function(d){
+        var inner='<span class="dic '+d.kind+'">'+DICON[d.kind]+'</span><span><b>'+esc(d[lang][0])+'</b><small>'+esc(d[lang][1])+'</small></span><span class="go">'+(d.href?'↗':'→')+'</span>';
+        return d.href ? '<a class="dcard" href="'+d.href+'" target="_blank" rel="noopener">'+inner+'</a>' : '<button type="button" class="dcard" data-doc="'+d.doc+'" data-doc-title="'+esc(d.t[lang])+'">'+inner+'</button>';
+      }).join('')+'</div></div>';
+    }
+    if(p.labgroups){
+      var base="https://colab.research.google.com/github/"+p.repo+"/blob/main/";
+      extra+='<div><h4 class="sec-t">'+u.labsT+'</h4><div class="labs">'+p.labgroups.map(function(g,i){
+        return '<details class="lgrp" style="--c:'+g.c+'"'+(i===0?' open':'')+'><summary><i></i><b>'+esc(g[lang])+'</b><span>'+g.labs.length+(lang==="es"?' laboratorios':' labs')+'</span></summary><ol>'+g.labs.map(function(l){
+          return '<li><a href="'+base+l[2]+'" target="_blank" rel="noopener"><span class="n">Lab '+l[0]+'</span><span class="t">'+esc(l[1])+'<small>'+esc(l[3])+'</small></span><span class="o">'+u.colab+' ↗</span></a></li>';
+        }).join('')+'</ol></details>';
+      }).join('')+'</div></div>';
+    }
     shLabel.textContent=u.label; shClose.setAttribute("aria-label",u.close);
-    shBody.innerHTML=media+head+tags+links+kv;
+    shBody.innerHTML=media+head+tags+links+extra+kv;
+    var gal=shBody.querySelector("[data-gal]");
+    if(gal){
+      var main=gal.querySelector(".gal-main"), mimg=main.querySelector("img"), murl=main.querySelector(".bar span"), cap=gal.querySelector(".gal-cap"), th=gal.querySelector(".gal-thumbs");
+      var show=function(it){ mimg.src=it.src; mimg.alt=it[lang][0]; main.href=it.src; murl.textContent="numi · "+it.url; cap.innerHTML='<b>'+esc(it[lang][0])+'.</b> '+esc(it[lang][1]);
+        th.querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-current",String(b.getAttribute("data-src")===it.src)); }); };
+      var setG=function(g){ var items=p.gallery.filter(function(x){return x.g===g;});
+        gal.querySelectorAll(".gal-tabs button").forEach(function(b){ b.setAttribute("aria-pressed",String(b.getAttribute("data-g")===g)); });
+        th.innerHTML=items.map(function(it){ return '<button type="button" data-src="'+it.src+'" aria-label="'+esc(it[lang][0])+'"><img src="'+it.src+'" alt="" loading="lazy"></button>'; }).join('');
+        th.querySelectorAll("button").forEach(function(b,i){ b.addEventListener("click",function(){ show(items[i]); }); });
+        show(items[0]); };
+      gal.querySelectorAll(".gal-tabs button").forEach(function(b){ b.addEventListener("click",function(){ setG(b.getAttribute("data-g")); }); });
+      setG("admin");
+    }
   }
   function openSheet(id){
     var p=byId(id); if(!p) return; current=p; fillSheet(p);
@@ -719,6 +936,8 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   function closeSheet(){ var v=shBody.querySelector("video"); if(v) v.pause(); if(sheet.open){ if(typeof sheet.close==="function") sheet.close(); else sheet.removeAttribute("open"); } current=null; }
   index.addEventListener("click",function(e){ var b=e.target.closest("button[data-id]"); if(b) openSheet(b.getAttribute("data-id")); });
   shClose.addEventListener("click",closeSheet);
+  document.addEventListener("click",function(e){ var b=e.target.closest("[data-open]"); if(!b) return; var p=byId(b.getAttribute("data-open")); if(!p) return;
+    if(sheet.open){ current=p; fillSheet(p); sheet.scrollTop=0; } else openSheet(p.id); });
   sheet.addEventListener("click",function(e){ if(e.target===sheet) closeSheet(); });
   sheet.addEventListener("close",function(){ var v=shBody.querySelector("video"); if(v) v.pause(); current=null; });
 
