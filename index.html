@@ -218,10 +218,15 @@ dialog.sheet::backdrop{background:rgba(4,7,6,.62);backdrop-filter:blur(3px);-web
 .st-fin i{width:10px;height:10px}.st-fin i::before{content:"";width:4px;height:8px;border:solid rgb(var(--c));border-width:0 2px 2px 0;transform:translateY(-1px) rotate(45deg)}
 .st-fin::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 35%,rgba(var(--c),.28) 50%,transparent 65%);transform:translateX(-100%);animation:stSheen 3.6s ease-in-out infinite}
 @keyframes stSheen{0%,50%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-.st-obra{--c:232,164,106}
-.st-obra::after{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(-55deg,rgba(var(--c),.16) 0 5px,transparent 5px 11px);background-size:200% 100%;animation:stStripe 1.4s linear infinite}
+.st-obra{--c:217,178,111;padding-left:8px}
+.st-obra::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:35%;background:linear-gradient(90deg,transparent,rgb(var(--c)),transparent);animation:stLine 2.8s ease-in-out infinite}
+@keyframes stLine{from{transform:translateX(-100%)}to{transform:translateX(300%)}}
 @keyframes stStripe{to{background-position:-26.9px 0}}
-.st-obra i{width:10px;height:10px;border-radius:50%;border:2px dotted rgb(var(--c));animation:stSpin 2.4s linear infinite}
+.st-obra i{width:15px;height:15px}
+.st-obra svg{width:15px;height:15px;transform:rotate(-90deg);display:block}
+.st-obra .trk{fill:none;stroke:rgba(var(--c),.22);stroke-width:2.4}
+.st-obra .arc{fill:none;stroke:rgb(var(--c));stroke-width:2.4;stroke-linecap:round;stroke-dasharray:44;stroke-dashoffset:44;animation:stFill 2.8s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes stFill{0%{stroke-dashoffset:44;opacity:1}70%{stroke-dashoffset:0}85%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
 @keyframes stSpin{to{transform:rotate(360deg)}}
 .st-doc{--c:127,192,204}
 .st-doc i{width:16px;display:flex;gap:3px;justify-content:center}
@@ -665,13 +670,13 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         what:"Muchos niños de las zonas rurales de Medellín no tienen internet en casa. Numi es una app de celular con actividades de matemáticas, español, ciencias, sociales e inglés, y un asistente de inteligencia artificial que responde preguntas sin necesidad de conexión.",
         wins:["Funciona 100 % sin internet una vez instalada, incluso en celulares económicos.","49 actividades interactivas con audio: arrastrar, elegir, armar palabras y encontrar parejas.","El progreso se guarda en el celular y se sincroniza cuando vuelve la conexión.","Paneles web de roles en Flask y MySQL: el administrador gestiona actividades, instituciones y usuarios; el docente ve el avance de su grupo y descarga reportes en Excel y PDF (110 pruebas automáticas)."],
         role:"Formé parte del equipo de ingeniería, que programó la lógica de la app, la base de datos, el asistente de IA y la sincronización. El diseño visual lo hizo el equipo de Crosmedia. En los paneles de roles trabajo en el panel administrativo y el docente.",
-        note:"En reconstrucción: estoy mejorando los paneles de roles (administrador y docente) y su conexión con la app. Los paneles tienen su propia ficha en este portafolio."},
+        note:"En actualización: estoy mejorando los paneles de roles (administrador y docente) y su conexión con la app. Los paneles tienen su propia ficha en este portafolio."},
       en:{name:"Numi",desc:"Educational app for children that works without internet",meta:["Team","Android + web"],
         sub:"Children in grades 1 to 5 in rural Medellín",
         what:"Many children in rural Medellín have no internet at home. Numi is a phone app with math, Spanish, science, social studies and English activities, plus an AI assistant that answers questions without a connection.",
         wins:["Works 100% offline once installed, even on low-cost phones.","49 interactive activities with audio: drag and drop, multiple choice, word building and matching.","Progress is saved on the phone and syncs when the connection comes back.","Role-based web panels in Flask and MySQL: admins manage activities, schools and users; teachers follow their group's progress and download Excel and PDF reports (110 automated tests)."],
         role:"I was part of the engineering team, which programmed the app logic, the database, the AI assistant and the syncing. The visual design was done by the Crosmedia team. On the role panels I work on the admin and teacher panels.",
-        note:"Being rebuilt: I am improving the role panels (admin and teacher) and their connection to the app. The panels have their own entry in this portfolio."} },
+        note:"Updating: I am improving the role panels (admin and teacher) and their connection to the app. The panels have their own entry in this portfolio."} },
     { id:"paneles", status:"obra", logo:"media/icons/paneles.webp", linked:"numi", image:"media/paneles.webp", poster:"media/paneles.webp",
       tools:[["python","Python"],["","Flask"],["mysql","MySQL"],["","Bootstrap"],["javascript","JavaScript"],["","pytest"],["github","GitHub"]],
       links:[{href:"https://github.com/luism7p7/numi-paneles-roles",es:"Ver el código de los paneles",en:"View the panels code",main:true}],
@@ -688,13 +693,13 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
         what:"Numi tiene dos paneles web que trabajan con la app del celular. En el administrativo se gestiona el contenido: actividades, imágenes y audios, instituciones, grupos y usuarios, y se vigila qué celulares llevan días sin sincronizar. En el docente, cada profesor sigue el avance de su grupo por materia y decide qué actividades quedan activas.",
         wins:["Constructor de actividades: lo que se publica llega al celular del niño en su próxima sincronización.","Panel docente con avance por materia, racha, estudiantes que requieren atención y reportes en Excel y PDF.","Un puente con clave conecta los paneles con el backend de la app; el progreso usa la misma tabla y la misma regla: gana el mayor avance.","Cada rol tiene su propio acceso, y solo las cuentas institucionales autorizadas entran.","110 pruebas automáticas con pytest."],
         role:"Trabajo en el panel administrativo y el docente: el servidor en Flask que alimenta cada pantalla con datos reales de MySQL, la conexión con la app y las pruebas. El diseño de las pantallas es del equipo.",
-        note:"En reconstrucción: estoy mejorando los dos paneles y su conexión con la app."},
+        note:"En actualización: estoy mejorando los dos paneles y su conexión con la app."},
       en:{name:"Numi Panels",desc:"Admin and teacher web panels connected to the app",meta:["Team","Web · Flask"],
         sub:"The web side of Numi · admin and teacher",
         what:"Numi has two web panels that work with the phone app. The admin panel manages the content: activities, images and audio, schools, groups and users, and it tracks which phones have not synced for days. In the teacher panel, each teacher follows their group's progress by subject and decides which activities stay active.",
         wins:["Activity builder: what is published reaches the child's phone on the next sync.","Teacher panel with progress by subject, streak, students who need attention and Excel and PDF reports.","A keyed bridge connects the panels with the app backend; progress uses the same table and the same rule: the highest progress wins.","Each role has its own sign-in, and only authorized institutional accounts can enter.","110 automated tests with pytest."],
         role:"I work on the admin and teacher panels: the Flask server that feeds every screen with real MySQL data, the connection with the app and the tests. The screen design is by the team.",
-        note:"Being rebuilt: I am improving both panels and their connection to the app."} },
+        note:"Updating: I am improving both panels and their connection to the app."} },
     { id:"blackjack", status:"fin", logo:"media/icons/blackjack.webp", video:"media/blackjack.mp4", poster:"media/blackjack.jpg",
       tools:[["javascript","JavaScript"],["html5","HTML"],["css3","CSS"],["python","Python"]],
       links:[{href:"https://luism7p7.github.io/BlackJack/Casino/public/",es:"Jugar en línea",en:"Play online",main:true},{href:"https://github.com/luism7p7/BlackJack",es:"Ver el código",en:"View code"}],
@@ -829,8 +834,8 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
   var ARROW='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
   function byId(id){ for(var i=0;i<P.length;i++) if(P[i].id===id) return P[i]; return null; }
-  var ST={vivo:{es:"En línea",en:"Live"},fin:{es:"Terminado",en:"Completed"},obra:{es:"En reconstrucción",en:"Being rebuilt"},doc:{es:"En documentación",en:"In documentation"},curso:{es:"En curso",en:"Ongoing"}};
-  function stHtml(p){ var k=p.status; if(!k) return ''; return '<span class="st st-'+k+'"><i aria-hidden="true">'+((k==="doc"||k==="curso")?'<b></b><b></b><b></b>':'')+'</i>'+esc(ST[k][lang])+'</span>'; }
+  var ST={vivo:{es:"En línea",en:"Live"},fin:{es:"Terminado",en:"Completed"},obra:{es:"En actualización",en:"Updating"},doc:{es:"En documentación",en:"In documentation"},curso:{es:"En curso",en:"Ongoing"}};
+  function stHtml(p){ var k=p.status; if(!k) return ''; return '<span class="st st-'+k+'"><i aria-hidden="true">'+((k==="doc"||k==="curso")?'<b></b><b></b><b></b>':(k==="obra"?'<svg viewBox="0 0 18 18"><circle class="trk" cx="9" cy="9" r="7"/><circle class="arc" cx="9" cy="9" r="7"/></svg>':''))+'</i>'+esc(ST[k][lang])+'</span>'; }
   function logoHtml(p){
     if(p.logo && p.numiBadge) return '<span class="pic-numi"><img src="'+p.logo+'" alt=""><span class="pic">'+ICON.panel+'</span></span>';
     if(p.logo) return '<img src="'+p.logo+'" alt=""'+(p.round?' class="round"':'')+'>';
