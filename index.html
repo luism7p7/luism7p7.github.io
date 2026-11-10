@@ -107,8 +107,10 @@ h2.title em{color:var(--accent)}
 
 /* hero */
 .hero{position:relative;padding-top:calc(150px + env(safe-area-inset-top,0px));padding-bottom:56px;overflow:hidden}
-#topo{position:fixed;left:0;top:0;width:100%;height:100vh;height:100lvh;display:block;z-index:0;pointer-events:none}
+#bgfx{position:fixed;left:0;top:0;width:100%;height:100vh;height:100lvh;display:block;z-index:0;pointer-events:none;opacity:0}
 main,footer{position:relative;z-index:1}
+.hero{background:var(--bg)}
+#topo{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
 .hero .wrap{z-index:1}
 .hero-top{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
 .avail{display:inline-flex;align-items:center;gap:10px;font-size:var(--t-sm);color:var(--accent)}
@@ -461,9 +463,10 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   </div>
 </header>
 
-<canvas id="topo" aria-hidden="true"></canvas>
+<canvas id="bgfx" aria-hidden="true"></canvas>
 <main id="top">
   <section class="hero">
+    <canvas id="topo" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="hero-top">
         <span class="label" data-i18n="h-l">Ingeniería de Software · Medellín</span>
@@ -1013,114 +1016,160 @@ dialog.nbview::backdrop{background:rgba(4,7,6,.7);backdrop-filter:blur(3px);-web
   });
 
   (function(){ /* portada: ámbito propio para no chocar con las variables de los proyectos */
-  /* Andes en capas, ahora como fondo vivo de toda la página: al bajar, el recorrido avanza por la cordillera,
-     el sol cruza el cielo (amanecer → día → atardecer → noche con estrellas) y las luciérnagas siguen volando.
-     Detrás del contenido se oscurece un velo para que el texto se lea siempre bien. */
+  /* Andes en capas: cordilleras con profundidad que siguen al mouse, una luz que las ilumina
+     y luciérnagas que se acercan al cursor y se dispersan con un clic o un toque */
   var cv=document.getElementById("topo"), ctx=cv.getContext("2d");
-  var dpr=Math.min(window.devicePixelRatio||1,1.5), W=0, H=0, t0=performance.now(), running=true;
-  var mx=.62, my=.38, tx=.62, ty=.38, active=false, lastMove=0, sy=0, smoothY=0, maxY=1;
+  var dpr=Math.min(window.devicePixelRatio||1,1.75), W=0, H=0, visible=true, t0=performance.now();
+  var mx=.62, my=.38, tx=.62, ty=.38, active=false, lastMove=0;
   var seed=11; function rnd(){ seed=(seed*16807)%2147483647; return (seed-1)/2147483646; }
+  // ruido 1D suave para las crestas
   var P=[]; for(var i=0;i<512;i++) P.push(rnd());
-  function n1(x){ var i=Math.floor(x), f=x-i, u=f*f*(3-2*f); return P[((i%512)+512)%512]*(1-u)+P[(((i+1)%512)+512)%512]*u; }
+  function n1(x){ var i=Math.floor(x), f=x-i, u=f*f*(3-2*f); return P[i&511]*(1-u)+P[(i+1)&511]*u; }
   function ridge(x, k){ var s=0, a=1, fr=1, tot=0; for(var o=0;o<5;o++){ s+=a*n1(x*fr+k*37.1); tot+=a; a*=.5; fr*=2.1; } return s/tot; }
-  var LAYERS=[ {d:.10,b:.50,a:.22,s:2.2},{d:.28,b:.58,a:.24,s:2.8},{d:.48,b:.66,a:.22,s:3.4},{d:.70,b:.75,a:.18,s:4.2},{d:.92,b:.86,a:.14,s:5.4}];
-  var flies=[], ripples=[], stars=[];
-  function lerp(a,b,k){ return a+(b-a)*k; }
-  function mix(c1,c2,k){ return [lerp(c1[0],c2[0],k),lerp(c1[1],c2[1],k),lerp(c1[2],c2[2],k)]; }
-  // color del cielo y de la luz según el avance de la página (0 arriba, 1 abajo)
-  var SKY=[[0,[227,190,150]],[.35,[168,213,191]],[.7,[226,150,110]],[1,[120,140,200]]];
-  function skyAt(p){ for(var j=1;j<SKY.length;j++){ if(p<=SKY[j][0]){ var A=SKY[j-1], B=SKY[j]; return mix(A[1],B[1],(p-A[0])/(B[0]-A[0])); } } return SKY[SKY.length-1][1]; }
-  function rgba(c,a){ return "rgba("+(c[0]|0)+","+(c[1]|0)+","+(c[2]|0)+","+a+")"; }
+  var LAYERS=[ // profundidad (0 lejos, 1 cerca), altura base, amplitud, escala
+    {d:.10,b:.50,a:.22,s:2.2},{d:.28,b:.58,a:.24,s:2.8},{d:.48,b:.66,a:.22,s:3.4},{d:.70,b:.75,a:.18,s:4.2},{d:.92,b:.86,a:.14,s:5.4}];
+  var flies=[], ripples=[];
   function size(){
     var r=cv.getBoundingClientRect(); W=r.width; H=r.height;
     cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
-    var n=Math.round(Math.min(60, W*H/16000)); flies=[];
-    for(var i=0;i<n;i++) flies.push({x:rnd()*W, y:H*(.45+rnd()*.5), vx:0, vy:0, ph:rnd()*6.28, r:.6+rnd()*.9, sp:.4+rnd()*.8});
-    stars=[]; var m=Math.round(Math.min(160, W*H/9000));
-    for(var s=0;s<m;s++) stars.push({x:rnd()*W, y:rnd()*H*.55, r:.4+rnd()*1.1, ph:rnd()*6.28, sp:.6+rnd()*1.6});
-    maxY=Math.max(1, document.documentElement.scrollHeight-window.innerHeight);
+    var n=Math.round(Math.min(64, W*H/15000)); flies=[];
+    for(var i=0;i<n;i++) flies.push({x:rnd()*W, y:H*(.5+rnd()*.48), vx:0, vy:0, ph:rnd()*6.28, r:.6+rnd()*.9, sp:.4+rnd()*.8});
   }
-  function crest(L, x, ox){ return H*(L.b - L.a*ridge((x+ox)/W*L.s, L.d*10)); }
+  function crest(L, x, ox){ return H*(L.b - L.a*ridge((x+ox)/W*L.s, L.d*10)) ; }
   function draw(now){
     var t=(now-t0)/1000;
-    smoothY+=(sy-smoothY)*.12;
-    var p=Math.min(1,Math.max(0,smoothY/maxY));            // avance de la página
-    var deep=Math.min(1,smoothY/(H*.85));                   // 0 en la portada, 1 cuando ya se bajó
-    var night=Math.max(0,(p-.72)/.28);                      // aparece la noche al final
-    var sky=skyAt(p);
-    // la luz recorre el cielo con el scroll y además pasea sola (o sigue al mouse)
-    var bx=.22+.62*p, by=.36-.20*Math.sin(Math.PI*Math.min(1,p*1.05))+.30*night;
-    if(!active || now-lastMove>4000){ tx=bx+.06*Math.sin(t*.13); ty=by+.04*Math.sin(t*.21+1.3); }
-    mx+=(tx-mx)*.05; my+=(ty-my)*.05;
+    if(!active || now-lastMove>4000){ // sin mouse: la luz pasea sola sobre las montañas
+      tx=.55+.28*Math.sin(t*.13); ty=.30+.10*Math.sin(t*.21+1.3);
+    }
+    mx+=(tx-mx)*.06; my+=(ty-my)*.06;
     var lx=mx*W, ly=my*H;
     ctx.clearRect(0,0,W,H);
-    // estrellas (de noche)
-    if(night>0){ for(var s=0;s<stars.length;s++){ var S=stars[s], a=night*(.35+.65*Math.max(0,Math.sin(t*S.sp+S.ph))); ctx.fillStyle="rgba(230,236,255,"+(a*.85)+")"; ctx.beginPath(); ctx.arc(S.x,S.y,S.r,0,6.283); ctx.fill(); } }
-    // resplandor del cielo y sol
-    var g=ctx.createRadialGradient(lx,ly,0,lx,ly,Math.max(W,H)*.6);
-    g.addColorStop(0,rgba(sky,.22*(1-night*.6))); g.addColorStop(.3,rgba(sky,.07)); g.addColorStop(1,"rgba(12,17,16,0)");
+    // luz (amanecer que sigue al cursor) detrás de las cordilleras
+    var g=ctx.createRadialGradient(lx,ly,0,lx,ly,Math.max(W,H)*.55);
+    g.addColorStop(0,"rgba(227,211,180,.22)"); g.addColorStop(.25,"rgba(168,213,191,.08)"); g.addColorStop(1,"rgba(12,17,16,0)");
     ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-    var sr=Math.min(W,H)*(.05+.01*night), sun=ctx.createRadialGradient(lx,ly,0,lx,ly,sr);
-    var sc=night>0?mix([246,232,200],[225,232,250],night):[246,232,200];
-    sun.addColorStop(0,rgba(sc,.6)); sun.addColorStop(.55,rgba(sc,.16)); sun.addColorStop(1,rgba(sc,0));
-    ctx.fillStyle=sun; ctx.beginPath(); ctx.arc(lx,ly,sr,0,6.283); ctx.fill();
-    // cordilleras: el scroll es un viaje (se desplazan de lado) y suben un poco con profundidad
+    var sr=Math.min(W,H)*.05, sun=ctx.createRadialGradient(lx,ly,0,lx,ly,sr); sun.addColorStop(0,"rgba(246,232,200,.55)"); sun.addColorStop(.55,"rgba(240,220,180,.16)"); sun.addColorStop(1,"rgba(240,220,180,0)"); ctx.fillStyle=sun; ctx.beginPath(); ctx.arc(lx,ly,sr,0,6.283); ctx.fill();
+    // cordilleras: cada capa se mueve según su profundidad (paralaje)
     var px=(mx-.5), py=(my-.4);
     for(var k=0;k<LAYERS.length;k++){
-      var L=LAYERS[k];
-      var ox=-px*W*.18*L.d + t*6*(L.d+.2) + smoothY*(.08+.55*L.d);
-      var oy=-py*H*.10*L.d + H*.09*(1-deep) - deep*H*.10*L.d;   // en la portada van más abajo y suben al bajar
+      var L=LAYERS[k], ox=-px*W*.18*L.d + t*6*(L.d+.2), oy=-py*H*.10*L.d;
       ctx.beginPath(); ctx.moveTo(0,H);
-      var step=Math.max(4, W/240), pts=[];
+      var step=Math.max(4, W/260), pts=[];
       for(var x=0;x<=W+step;x+=step){ var y=crest(L,x,ox)+oy; pts.push(x,y); ctx.lineTo(x,y); }
       ctx.lineTo(W,H); ctx.closePath();
-      var depth=L.d, hz=1-depth;
+      var depth=L.d, base=Math.round(12+depth*6);
       var fill=ctx.createLinearGradient(0,H*(L.b-L.a),0,H);
-      fill.addColorStop(0,"rgba("+(14+hz*26|0)+","+(22+hz*40|0)+","+(20+hz*34|0)+","+(.7+.3*depth)+")");
+      var hz=1-depth; fill.addColorStop(0,"rgba("+(14+hz*26|0)+","+(22+hz*40|0)+","+(20+hz*34|0)+","+(.7+.3*depth)+")");
       fill.addColorStop(1,"rgba(12,17,16,"+(.75+.25*depth)+")");
       ctx.fillStyle=fill; ctx.fill();
+      // borde de la cresta: brilla más cerca de la luz
       var sg=ctx.createRadialGradient(lx,ly,0,lx,ly,W*(.22+.15*depth));
-      sg.addColorStop(0,rgba(mix([240,224,190],sky,.35),(.85-.35*depth))); sg.addColorStop(.6,rgba(sky,(.28-.1*depth))); sg.addColorStop(1,"rgba(168,213,191,"+(.10+.04*depth)+")");
+      sg.addColorStop(0,"rgba(240,224,190,"+(.85-.35*depth)+")"); sg.addColorStop(.6,"rgba(168,213,191,"+(.28-.1*depth)+")"); sg.addColorStop(1,"rgba(168,213,191,"+(.10+.04*depth)+")");
       ctx.beginPath(); for(var q=0;q<pts.length;q+=2){ if(q===0) ctx.moveTo(pts[q],pts[q+1]); else ctx.lineTo(pts[q],pts[q+1]); }
       ctx.strokeStyle=sg; ctx.lineWidth=1+depth*1.2; ctx.stroke();
-      if(k<LAYERS.length-1){ var fy=H*(L.b+.02)+oy, fg=ctx.createLinearGradient(0,fy,0,fy+H*.12); fg.addColorStop(0,rgba(sky,0)); fg.addColorStop(.4,rgba(sky,.04)); fg.addColorStop(1,rgba(sky,0)); ctx.fillStyle=fg; ctx.fillRect(0,fy,W,H*.12); }
+      // niebla entre capas
+      if(k<LAYERS.length-1){ var fg=ctx.createLinearGradient(0,H*(L.b+.02),0,H*(L.b+.14)); fg.addColorStop(0,"rgba(168,213,191,.035)"); fg.addColorStop(1,"rgba(168,213,191,0)"); ctx.fillStyle=fg; ctx.fillRect(0,H*(L.b+.02),W,H*.12); }
     }
-    for(var r=ripples.length-1;r>=0;r--){ var R=ripples[r], a2=(t-R.t)/1.6; if(a2>1){ ripples.splice(r,1); continue; }
-      ctx.beginPath(); ctx.arc(R.x,R.y,10+a2*Math.min(W,H)*.35,0,6.283); ctx.strokeStyle="rgba(227,211,180,"+(.5*(1-a2))+")"; ctx.lineWidth=1.4; ctx.stroke(); }
-    // luciérnagas
+    // ondas de clic
+    for(var r=ripples.length-1;r>=0;r--){ var R=ripples[r], a=(t-R.t)/1.6; if(a>1){ ripples.splice(r,1); continue; }
+      ctx.beginPath(); ctx.arc(R.x,R.y,10+a*Math.min(W,H)*.35,0,6.283); ctx.strokeStyle="rgba(227,211,180,"+(.5*(1-a))+")"; ctx.lineWidth=1.4; ctx.stroke(); }
+    // luciérnagas: se acercan a la luz y huyen de las ondas
     ctx.globalCompositeOperation="lighter";
-    var glow=1+night*.6;
     for(var f=0;f<flies.length;f++){
       var F=flies[f], dx=lx-F.x, dy=ly-F.y, dd=Math.sqrt(dx*dx+dy*dy)+1;
       var pull=active?Math.min(.06, 22/dd)*.6:.004;
       F.vx+=dx/dd*pull*F.sp + Math.cos(t*F.sp+F.ph)*.02; F.vy+=dy/dd*pull*F.sp + Math.sin(t*F.sp*1.3+F.ph)*.02;
       for(var r2=0;r2<ripples.length;r2++){ var R2=ripples[r2], ex=F.x-R2.x, ey=F.y-R2.y, e=Math.sqrt(ex*ex+ey*ey)+1; if(t-R2.t<.25){ F.vx+=ex/e*3.2; F.vy+=ey/e*3.2; } }
       if(dd<40){ F.vx-=dx/dd*.12; F.vy-=dy/dd*.12; }
-      F.vx*=.94; F.vy*=.94; F.x+=F.vx - (sy-smoothY)*.0; F.y+=F.vy;
-      if(F.x<-20) F.x=W+20; if(F.x>W+20) F.x=-20; if(F.y<H*.15) F.y=H; if(F.y>H) F.y=H*.45;
+      F.vx*=.94; F.vy*=.94; F.x+=F.vx; F.y+=F.vy;
+      if(F.x<-20) F.x=W+20; if(F.x>W+20) F.x=-20; if(F.y<H*.2) F.y=H; if(F.y>H) F.y=H*.5;
       var tw=.45+.55*Math.max(0,Math.sin(t*2.2*F.sp+F.ph)), rr=F.r*(1+tw);
-      var fg2=ctx.createRadialGradient(F.x,F.y,0,F.x,F.y,rr*3.2*glow);
+      var fg2=ctx.createRadialGradient(F.x,F.y,0,F.x,F.y,rr*3.2);
       fg2.addColorStop(0,"rgba(246,222,160,"+(.55*tw)+")"); fg2.addColorStop(1,"rgba(246,222,160,0)");
-      ctx.fillStyle=fg2; ctx.beginPath(); ctx.arc(F.x,F.y,rr*3.2*glow,0,6.283); ctx.fill();
+      ctx.fillStyle=fg2; ctx.beginPath(); ctx.arc(F.x,F.y,rr*3.2,0,6.283); ctx.fill();
       ctx.fillStyle="rgba(255,240,200,"+(.9*tw)+")"; ctx.beginPath(); ctx.arc(F.x,F.y,rr*.7,0,6.283); ctx.fill();
     }
     ctx.globalCompositeOperation="source-over";
-    // velo para que el contenido se lea: casi nada en la portada, más oscuro al bajar
-    if(deep>0){ ctx.fillStyle="rgba(12,17,16,"+(.40*deep)+")"; ctx.fillRect(0,0,W,H); }
   }
-  function onScroll(){ sy=window.scrollY||window.pageYOffset||0; if(reduce) requestAnimationFrame(function(n){ smoothY=sy; draw(n); }); }
-  function loop(now){ if(running) draw(now); requestAnimationFrame(loop); }
-  size(); onScroll(); smoothY=sy;
-  var rT; window.addEventListener("resize",function(){ clearTimeout(rT); rT=setTimeout(function(){ size(); draw(performance.now()); },150); });
-  window.addEventListener("load",function(){ maxY=Math.max(1, document.documentElement.scrollHeight-window.innerHeight); });
-  window.addEventListener("scroll",onScroll,{passive:true});
+  function loop(now){ if(visible) draw(now); requestAnimationFrame(loop); }
+  size();
+  var rT; window.addEventListener("resize",function(){ clearTimeout(rT); rT=setTimeout(function(){ size(); draw(performance.now()); },120); });
   var hero=document.querySelector(".hero");
-  function mv(e){ if(e.pointerType && e.pointerType!=="mouse") return; tx=e.clientX/W; ty=e.clientY/H; active=true; lastMove=performance.now(); }
-  window.addEventListener("pointermove",mv,{passive:true});
-  hero.addEventListener("pointerdown",function(e){ if(e.target.closest("a,button")) return; tx=e.clientX/W; ty=e.clientY/H; active=true; lastMove=performance.now(); ripples.push({x:e.clientX,y:e.clientY,t:(performance.now()-t0)/1000}); });
-  document.addEventListener("mouseleave",function(){ active=false; });
-  document.addEventListener("visibilitychange",function(){ running=!document.hidden; });
+  function mv(e){ var r=cv.getBoundingClientRect(); tx=(e.clientX-r.left)/r.width; ty=(e.clientY-r.top)/r.height; active=true; lastMove=performance.now(); }
+  hero.addEventListener("pointermove",mv);
+  hero.addEventListener("pointerdown",function(e){ mv(e); var r=cv.getBoundingClientRect(); ripples.push({x:e.clientX-r.left,y:e.clientY-r.top,t:(performance.now()-t0)/1000}); });
+  hero.addEventListener("pointerleave",function(){ active=false; });
   if(reduce){ draw(performance.now()); }
+  else {
+    if("IntersectionObserver" in window) new IntersectionObserver(function(es){ visible=es[0].isIntersecting; }).observe(cv);
+    requestAnimationFrame(loop);
+  }
+  })();
+  (function(){ /* fondo de las secciones: animación propia, automática y permanente, que aparece al bajar.
+     Curvas de nivel que fluyen despacio (el relieve) y una red de puntos de datos que se conectan,
+     laten y reaccionan al mouse. La portada conserva su propia animación de los Andes. */
+  var cv=document.getElementById("bgfx"); if(!cv) return;
+  var ctx=cv.getContext("2d"), dpr=Math.min(window.devicePixelRatio||1,1.5), W=0, H=0, t0=performance.now();
+  var pts=[], lines=[], mx=-9999, my=-9999, sy=0, shown=0, target=0, hidden=false, hero=document.querySelector(".hero");
+  var seed=7; function rnd(){ seed=(seed*16807)%2147483647; return (seed-1)/2147483646; }
+  function size(){
+    var r=cv.getBoundingClientRect(); W=r.width; H=r.height;
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.round(Math.max(24,Math.min(72, W*H/20000))); pts=[];
+    for(var i=0;i<n;i++) pts.push({x:rnd()*W, y:rnd()*H, vx:(rnd()-.5)*.28, vy:(rnd()-.5)*.28, ph:rnd()*6.28, ping:rnd()<.12});
+    lines=[]; var m=7; for(var k=0;k<m;k++) lines.push({b:(k+.5)/m, a:16+rnd()*26, f:.0016+rnd()*.0022, s:.08+rnd()*.12, p:rnd()*6.28, f2:.004+rnd()*.004});
+  }
+  function draw(now){
+    var t=(now-t0)/1000;
+    ctx.clearRect(0,0,W,H);
+    // curvas de nivel que fluyen; se desplazan un poco con el scroll
+    for(var k=0;k<lines.length;k++){
+      var L=lines[k], y0=L.b*H, ph=L.p+t*L.s+sy*.0012;
+      ctx.beginPath();
+      for(var x=0;x<=W+8;x+=8){ var y=y0+L.a*Math.sin(x*L.f+ph)+L.a*.45*Math.sin(x*L.f2-ph*1.3); if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+      ctx.strokeStyle="rgba(168,213,191,"+(.045+.03*Math.sin(t*.4+k))+")"; ctx.lineWidth=1; ctx.stroke();
+    }
+    // red de puntos de datos
+    for(var i=0;i<pts.length;i++){
+      var P=pts[i];
+      var dx=P.x-mx, dy=P.y-my, d2=dx*dx+dy*dy;
+      if(d2<160*160){ var d=Math.sqrt(d2)+1; P.vx+=dx/d*.02; P.vy+=dy/d*.02; }
+      P.vx*=.995; P.vy*=.995;
+      var sp=Math.sqrt(P.vx*P.vx+P.vy*P.vy); if(sp<.08){ P.vx+=(rnd()-.5)*.04; P.vy+=(rnd()-.5)*.04; } if(sp>.9){ P.vx*=.9; P.vy*=.9; }
+      P.x+=P.vx; P.y+=P.vy;
+      if(P.x<-20) P.x=W+20; if(P.x>W+20) P.x=-20; if(P.y<-20) P.y=H+20; if(P.y>H+20) P.y=-20;
+    }
+    var R=Math.min(150, Math.max(110, W/9));
+    for(var a=0;a<pts.length;a++){ for(var b=a+1;b<pts.length;b++){
+      var A=pts[a], B=pts[b], ex=A.x-B.x, ey=A.y-B.y, e=ex*ex+ey*ey;
+      if(e<R*R){ var al=(1-Math.sqrt(e)/R)*.16; ctx.strokeStyle="rgba(168,213,191,"+al+")"; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke(); }
+    }
+      var cx=pts[a].x-mx, cy=pts[a].y-my, c=cx*cx+cy*cy;
+      if(c<190*190){ ctx.strokeStyle="rgba(227,211,180,"+((1-Math.sqrt(c)/190)*.28)+")"; ctx.beginPath(); ctx.moveTo(pts[a].x,pts[a].y); ctx.lineTo(mx,my); ctx.stroke(); }
+    }
+    for(var j=0;j<pts.length;j++){
+      var Q=pts[j], tw=.5+.5*Math.sin(t*1.4+Q.ph);
+      ctx.fillStyle="rgba(168,213,191,"+(.35+.35*tw)+")"; ctx.beginPath(); ctx.arc(Q.x,Q.y,1.5,0,6.283); ctx.fill();
+      if(Q.ping){ var k2=((t*.35+Q.ph)%1); ctx.strokeStyle="rgba(227,211,180,"+(.4*(1-k2))+")"; ctx.beginPath(); ctx.arc(Q.x,Q.y,2+k2*22,0,6.283); ctx.stroke(); }
+    }
+  }
+  function update(){
+    sy=window.scrollY||window.pageYOffset||0;
+    var hh=hero?hero.offsetHeight:window.innerHeight;
+    target=Math.max(0,Math.min(1,(sy-hh*.45)/(hh*.45)));   // aparece cuando la portada va saliendo
+  }
+  function loop(now){
+    shown+=(target-shown)*.08; cv.style.opacity=shown.toFixed(3);
+    if(!hidden && shown>.01) draw(now);
+    requestAnimationFrame(loop);
+  }
+  size(); update();
+  var rT; window.addEventListener("resize",function(){ clearTimeout(rT); rT=setTimeout(function(){ size(); update(); },150); });
+  window.addEventListener("scroll",update,{passive:true});
+  window.addEventListener("pointermove",function(e){ if(e.pointerType!=="mouse") return; mx=e.clientX; my=e.clientY; },{passive:true});
+  document.addEventListener("mouseleave",function(){ mx=my=-9999; });
+  document.addEventListener("visibilitychange",function(){ hidden=document.hidden; });
+  if(reduce){ cv.style.opacity="1"; window.addEventListener("scroll",function(){ update(); cv.style.opacity=target; draw(performance.now()); },{passive:true}); update(); cv.style.opacity=target; draw(performance.now()); }
   else requestAnimationFrame(loop);
   })();
 })();
